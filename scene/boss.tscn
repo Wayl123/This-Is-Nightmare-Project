@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlmfps6s4iwg3"]
+
+[ext_resource type="Script" path="res://scripts/Boss.gd" id="1_526fu"]
+[ext_resource type="Texture2D" uid="uid://dk2jfwufx2qk8" path="res://image/boss.png" id="2_dcoos"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k78ym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dcoos")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7k5g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t75mh"]
+size = Vector2(240, 45)
+
+[node name="Boss" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_526fu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_k78ym")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s7k5g")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -97.5)
+shape = SubResource("RectangleShape2D_t75mh")

@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx84oplhxfuqq"]
+[gd_scene load_steps=6 format=3 uid="uid://dx84oplhxfuqq"]
 
 [ext_resource type="Texture2D" uid="uid://bixlfq5u6x2xm" path="res://image/grasstileset.png" id="1_vvp83"]
-[ext_resource type="Script" path="res://scripts/Player.gd" id="2_eup3r"]
-[ext_resource type="Texture2D" uid="uid://dfldir2xtkh7l" path="res://image/player.png" id="3_5lrmg"]
+[ext_resource type="PackedScene" uid="uid://qhe00d1dk7d3" path="res://scene/player.tscn" id="2_mj0qv"]
+[ext_resource type="PackedScene" uid="uid://dlmfps6s4iwg3" path="res://scene/boss.tscn" id="3_qvhj0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j20ed"]
 texture = ExtResource("1_vvp83")
@@ -163,21 +163,6 @@ texture = ExtResource("1_vvp83")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_j20ed")
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_2rj4b"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_5lrmg")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_27mud"]
-radius = 6.0
-height = 28.0
-
 [node name="BossStage" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -189,24 +174,7 @@ tile_set = SubResource("TileSet_xtmbd")
 format = 2
 layer_0/tile_data = PackedInt32Array(131063, 65537, 0, 131064, 65537, 0, 131065, 65537, 0, 131066, 65537, 0, 131067, 65537, 0, 131068, 65537, 0, 131069, 65537, 0, 131070, 65537, 0, 131071, 65537, 0, 65536, 65537, 0, 65537, 65537, 0, 65538, 65537, 0, 65539, 65537, 0, 65540, 65537, 0, 65541, 65537, 0, 65542, 65537, 0, 65543, 65537, 0, 65544, 65537, 0, 65545, 65537, 0, 131062, 65537, 0, -196604, 524289, 0, -196603, 524289, 0, -196602, 524289, 0, -131077, 524289, 0, -131078, 524289, 0, -131079, 524289, 0, -196605, 524289, 0, -131076, 524289, 0)
 
-[node name="Player" type="CharacterBody2D" parent="."]
-script = ExtResource("2_eup3r")
+[node name="Player" parent="." instance=ExtResource("2_mj0qv")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-sprite_frames = SubResource("SpriteFrames_2rj4b")
-animation = &"idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("CapsuleShape2D_27mud")
-
-[node name="Gun" type="Node2D" parent="Player"]
-unique_name_in_owner = true
-
-[node name="GunMuzzle" type="Marker2D" parent="Player/Gun"]
-unique_name_in_owner = true
-position = Vector2(6, 0)
-
-[node name="GunDelay" type="Timer" parent="Player/Gun"]
-unique_name_in_owner = true
-wait_time = 0.5
-one_shot = true
+[node name="Boss" parent="." instance=ExtResource("3_qvhj0")]
+z_index = -1
