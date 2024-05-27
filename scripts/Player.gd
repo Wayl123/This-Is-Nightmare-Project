@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var gun = %Gun
+@onready var gunMuzzle = %GunMuzzle
 @onready var gunDelay = %GunDelay
 
 var BULLET = preload("res://scene/bullet.tscn")
@@ -26,11 +27,15 @@ func _physics_process(delta : float):
 	move_and_slide()
 	
 func _process(delta : float):
+	if Input.is_anything_pressed():
+		var vector = Input.get_vector("Left", "Right", "Up", "Down")
+		gun.set_rotation(vector.angle())
+	
 	if Input.is_action_pressed("Shoot") and gunDelay.is_stopped():
 		_shoot()
 		gunDelay.start()
 		
 func _shoot():
 	var bullet = BULLET.instantiate()
-	bullet.transform = gun.global_transform
+	bullet.transform = gunMuzzle.global_transform
 	get_parent().add_child(bullet)
