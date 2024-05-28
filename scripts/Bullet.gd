@@ -3,6 +3,7 @@ extends Area2D
 @onready var timer = %BulletExpirationTimer
 
 var speed = 750
+var damage = 1
 
 func _ready():
 	connect("area_entered", Callable(self, "_hit_object"))
@@ -17,3 +18,6 @@ func _hit_object(area : Area2D):
 	
 func _bullet_expire():
 	queue_free()
+	
+func get_damage():
+	return damage

@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 var ENEMY = preload("res://scene/enemy.tscn")
 
-const TOTALHEALTH = 1000.0
+const TOTAL_HEALTH = 1000.0
 
 var health = 1000
 
@@ -14,8 +14,8 @@ func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
 
 func _got_hit(area : Area2D):
-	health -= 1
-	var healthPercent = health / TOTALHEALTH * 100
+	health -= area.get_damage()
+	var healthPercent = health / TOTAL_HEALTH * 100
 	
 	call_deferred("_spawn_enemy", -1.0)
 	
