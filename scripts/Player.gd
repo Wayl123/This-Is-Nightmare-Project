@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var hurtbox = %Hurtbox
 @onready var gun = %Gun
 @onready var gunMuzzle = %GunMuzzle
 @onready var gunDelay = %GunDelay
@@ -10,6 +11,9 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+func _ready():
+	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
 
 func _physics_process(delta : float):
 	if not is_on_floor():
@@ -37,6 +41,13 @@ func _process(delta : float):
 	if Input.is_action_pressed("Shoot") and gunDelay.is_stopped():
 		_shoot()
 		gunDelay.start()
+		
+func _got_hit(area : Area2D):
+	if area.is_in_group("Killbox"):
+		print_debug("Game over")
+		queue_free()
+	else:
+		print_debug("Player died")
 		
 func _shoot():
 	var bullet = BULLET.instantiate()

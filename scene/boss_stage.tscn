@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx84oplhxfuqq"]
+[gd_scene load_steps=7 format=3 uid="uid://dx84oplhxfuqq"]
 
 [ext_resource type="Texture2D" uid="uid://bixlfq5u6x2xm" path="res://image/grasstileset.png" id="1_vvp83"]
 [ext_resource type="PackedScene" uid="uid://qhe00d1dk7d3" path="res://scene/player.tscn" id="2_mj0qv"]
@@ -161,7 +161,11 @@ texture = ExtResource("1_vvp83")
 
 [sub_resource type="TileSet" id="TileSet_xtmbd"]
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_j20ed")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3b7s5"]
+size = Vector2(496, 120.5)
 
 [node name="BossStage" type="Node2D"]
 
@@ -178,3 +182,13 @@ layer_0/tile_data = PackedInt32Array(131063, 65537, 0, 131064, 65537, 0, 131065,
 
 [node name="Boss" parent="." instance=ExtResource("3_qvhj0")]
 z_index = -1
+
+[node name="Killbox" type="Area2D" parent="." groups=["Killbox"]]
+position = Vector2(0, 248)
+collision_layer = 32
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox"]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_3b7s5")
+debug_color = Color(1, 0, 0.701961, 0.419608)
