@@ -1,16 +1,18 @@
 extends CharacterBody2D
 
+@onready var animation = %AnimatedSprite2D
 @onready var hurtbox = %Hurtbox
+@onready var invulnTimer = %HitInvulnerabilityTimer
 @onready var gun = %Gun
-@onready var gunMuzzle = %GunMuzzle
-@onready var gunDelay = %GunDelay
-
-var BULLET = preload("res://scene/bullet.tscn")
+@onready var gunDelay = %GunDelayTimer
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+var lastStandMode = false
+var isInvulerable = false
 
 func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
@@ -28,6 +30,11 @@ func _physics_process(delta : float):
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+			
+		if lastStandMode: 
+			animation.play("LSIdle") 
+		else: 
+			animation.play("Idle")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
@@ -39,17 +46,19 @@ func _process(delta : float):
 		gun.set_rotation(vector.angle())
 	
 	if Input.is_action_pressed("Shoot") and gunDelay.is_stopped():
-		_shoot()
-		gunDelay.start()
+		gun.shoot()
 		
 func _got_hit(area : Area2D):
 	if area.is_in_group("Killbox"):
-		print_debug("Game over")
 		queue_free()
 	else:
-		print_debug("Player died")
+		if invulnTimer.is_stopped():
+			if lastStandMode:
+				print_debug("dead")
+				#queue_free()
+			else:
+				lastStandMode = true
+				hurtbox.start_invuln()
 		
-func _shoot():
-	var bullet = BULLET.instantiate()
-	bullet.transform = gunMuzzle.global_transform
-	get_parent().add_child(bullet)
+func _last_stand():
+	pass

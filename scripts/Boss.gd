@@ -23,6 +23,6 @@ func _got_hit(area : Area2D):
 	
 func _spawn_enemy(direction : float):
 	var enemy = ENEMY.instantiate()
-	enemy.transform = enemySpawnRight.global_transform
+	enemy.transform = enemySpawnRight.transform
 	enemy.set("direction", direction)
-	get_parent().add_child(enemy)
+	get_node("/root/BossStage").add_child(enemy)

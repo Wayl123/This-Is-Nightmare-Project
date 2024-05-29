@@ -169,6 +169,8 @@ size = Vector2(496, 120.5)
 
 [node name="BossStage" type="Node2D"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
 

@@ -25,5 +25,4 @@ func _physics_process(delta : float):
 	move_and_slide()
 
 func _got_hit(area : Area2D):
-	print_debug(area)
 	queue_free()
