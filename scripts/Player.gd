@@ -42,7 +42,8 @@ func _physics_process(delta : float):
 func _process(delta : float):
 	if Input.is_action_pressed("Left") or Input.is_action_pressed("Right") or Input.is_action_pressed("Up") or Input.is_action_pressed("Down"):
 		var vector = Input.get_vector("Left", "Right", "Up", "Down")
-		gun.set_rotation(vector.angle())
+		var roundAngle = round(vector.angle()/(PI/2.0))*(PI/2.0)
+		gun.set_rotation(roundAngle)
 	
 	if Input.is_action_pressed("Shoot") and gunDelay.is_stopped():
 		gun.shoot()
