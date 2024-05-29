@@ -25,4 +25,6 @@ func _physics_process(delta : float):
 	move_and_slide()
 
 func _got_hit(area : Area2D):
+	if area.is_in_group("PlayerBullets"):
+		get_tree().get_first_node_in_group("Player").enemy_killed()
 	queue_free()

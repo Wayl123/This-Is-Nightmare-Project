@@ -14,6 +14,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var lastStandMode = false
 var isInvulerable = false
 
+var idleAnimation = "Idle"
+
 func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
 
@@ -30,13 +32,10 @@ func _physics_process(delta : float):
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-			
-		if lastStandMode: 
-			animation.play("LSIdle") 
-		else: 
-			animation.play("Idle")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+	animation.play(idleAnimation)
 
 	move_and_slide()
 	
@@ -57,8 +56,13 @@ func _got_hit(area : Area2D):
 				print_debug("dead")
 				#queue_free()
 			else:
-				lastStandMode = true
+				_last_stand(true)
 				hurtbox.start_invuln()
 		
-func _last_stand():
-	pass
+func _last_stand(isLS : bool):
+	lastStandMode = isLS
+	idleAnimation = "IdleLS" if isLS else "Idle"
+	
+func enemy_killed():
+	if lastStandMode:
+		_last_stand(false)
