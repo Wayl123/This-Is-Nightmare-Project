@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://by2qwvmlv140e"]
+[gd_scene load_steps=7 format=3 uid="uid://dvnr85l2e135i"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_kwrd2"]
-[ext_resource type="Texture2D" uid="uid://del0l1mk3bbxu" path="res://image/ghost1.png" id="2_cql7w"]
+[ext_resource type="Texture2D" path="res://image/ghost1.png" id="2_cql7w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0l1r4"]
 animations = [{
