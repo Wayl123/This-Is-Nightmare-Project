@@ -8,11 +8,14 @@ extends CharacterBody2D
 
 var ENEMY = preload("res://scene/enemy.tscn")
 
-const SPEED = 200.0
+const MAX_SPEED = 200.0
+const MIN_SPEED = 50.0
+const ACCEL = 10.0
 const TOTAL_HEALTH = 1000
 
 var destPosition : Vector2
 
+var speed = 0
 var health = 1000
 
 func _ready():
@@ -22,7 +25,11 @@ func _ready():
 	
 func _physics_process(delta : float):
 	call_deferred("_random_move", delta)
-	global_position = global_position.move_toward(destPosition, delta * SPEED)
+	
+	if global_position != destPosition:
+		speed = move_toward(speed, (MAX_SPEED if global_position.distance_to(destPosition) > 50 else MIN_SPEED), ACCEL)
+		global_position = global_position.move_toward(destPosition, delta * speed)
+		print_debug(speed)
 
 func _got_hit(area : Area2D):
 	health -= area.get_damage()
