@@ -6,8 +6,8 @@ extends CharacterBody2D
 @onready var gun = %Gun
 @onready var gunDelay = %GunDelayTimer
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const SPEED = 150.0
+const JUMP_VELOCITY = -500.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -45,7 +45,7 @@ func _process(delta : float):
 		var roundAngle = round(vector.angle()/(PI/2.0))*(PI/2.0)
 		gun.set_rotation(roundAngle)
 	
-	if Input.is_action_pressed("Shoot") and gunDelay.is_stopped():
+	if (Input.is_action_pressed("Shoot") or Input.is_action_pressed("Stop")) and gunDelay.is_stopped():
 		gun.shoot()
 		
 func _got_hit(area : Area2D):

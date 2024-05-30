@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0u5y5geyylo5"]
+
+[ext_resource type="Script" path="res://scripts/EnemySpawnMarkers.gd" id="1_5bhma"]
+
+[node name="EnemySpawnMarkers" type="Node"]
+script = ExtResource("1_5bhma")
+
+[node name="EnemySpawnLeft" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-90, -75)
+
+[node name="EnemySpawnRight" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(90, -75)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.25
+autostart = true
