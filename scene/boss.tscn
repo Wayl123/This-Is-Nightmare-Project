@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlmfps6s4iwg3"]
+[gd_scene load_steps=8 format=3 uid="uid://dlmfps6s4iwg3"]
 
 [ext_resource type="Script" path="res://scripts/Boss.gd" id="1_526fu"]
 [ext_resource type="Texture2D" uid="uid://dk2jfwufx2qk8" path="res://image/boss.png" id="2_dcoos"]
 [ext_resource type="PackedScene" uid="uid://c0u5y5geyylo5" path="res://scene/enemy_spawn_markers.tscn" id="3_ba5es"]
+[ext_resource type="PackedScene" uid="uid://cotpr6lp4d1fl" path="res://scene/bullet_spawn_markers.tscn" id="4_rxmkd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k78ym"]
 animations = [{
@@ -43,3 +44,5 @@ position = Vector2(0, -97.5)
 shape = SubResource("RectangleShape2D_t75mh")
 
 [node name="EnemySpawnMarkers" parent="." instance=ExtResource("3_ba5es")]
+
+[node name="BulletSpawnMarkers" parent="." instance=ExtResource("4_rxmkd")]
