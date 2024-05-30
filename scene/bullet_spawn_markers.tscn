@@ -23,7 +23,15 @@ unique_name_in_owner = true
 position = Vector2(250, 0)
 rotation = 3.14159
 
+[node name="BulletSpawnBoss" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -75)
+
 [node name="BigBulletTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 5.0
 autostart = true
+
+[node name="BulletHellTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5

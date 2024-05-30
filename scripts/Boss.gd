@@ -1,15 +1,28 @@
 extends CharacterBody2D
 
 @onready var hurtbox = %Hurtbox
+@onready var moveMarkerLeft = %MoveMarkerLeft
+@onready var moveMarkerMiddle = %MoveMarkerMiddle
+@onready var moveMarkerRight = %MoveMarkerRight
+@onready var moveTimer = %MoveTimer
 
 var ENEMY = preload("res://scene/enemy.tscn")
 
+const SPEED = 200.0
 const TOTAL_HEALTH = 1000
+
+var destPosition : Vector2
 
 var health = 1000
 
 func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
+	
+	destPosition = moveMarkerMiddle.position
+	
+func _physics_process(delta : float):
+	call_deferred("_random_move", delta)
+	global_position = global_position.move_toward(destPosition, delta * SPEED)
 
 func _got_hit(area : Area2D):
 	health -= area.get_damage()
@@ -25,3 +38,25 @@ func _got_hit(area : Area2D):
 		pass
 	
 	print_debug(healthPercent)
+	
+func _random_move(delta : float):
+	if global_position == destPosition and moveTimer.is_stopped():
+		var rng = RandomNumberGenerator.new()
+		moveTimer.wait_time = rng.randf_range(0.1, 5.0)
+		moveTimer.start()
+		print_debug(moveTimer.wait_time)
+		await moveTimer.timeout
+		
+		var randomPosition = rng.randi_range(0, 1) == 0
+		match destPosition:
+			moveMarkerLeft.position:
+				destPosition = moveMarkerMiddle.position if randomPosition else moveMarkerRight.position
+			moveMarkerMiddle.position:
+				destPosition = moveMarkerLeft.position if randomPosition else moveMarkerRight.position
+			moveMarkerRight.position:
+				destPosition = moveMarkerLeft.position if randomPosition else moveMarkerMiddle.position
+			_:
+				destPosition = moveMarkerMiddle.position
+		
+		if rng.randi_range(0, 1) == 0:
+			global_position = destPosition

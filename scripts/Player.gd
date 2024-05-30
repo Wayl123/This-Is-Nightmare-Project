@@ -28,12 +28,9 @@ func _physics_process(delta : float):
 			velocity.y = JUMP_VELOCITY
 
 		var direction = Input.get_axis("Left", "Right")
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = 0
 		
 	animation.play(idleAnimation)
 
@@ -43,7 +40,7 @@ func _process(delta : float):
 	if Input.is_action_pressed("Left") or Input.is_action_pressed("Right") or Input.is_action_pressed("Up") or Input.is_action_pressed("Down"):
 		var vector = Input.get_vector("Left", "Right", "Up", "Down")
 		var roundAngle = round(vector.angle()/(PI/2.0))*(PI/2.0)
-		gun.set_rotation(roundAngle)
+		gun.rotation = roundAngle
 	
 	if (Input.is_action_pressed("Shoot") or Input.is_action_pressed("Stop")) and gunDelay.is_stopped():
 		gun.shoot()

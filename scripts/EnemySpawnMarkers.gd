@@ -25,6 +25,6 @@ func _spawn_enemy():
 			direction = -1.0
 			
 		alt = not alt
-		enemy.transform = spawn.transform
+		enemy.position = spawn.position
 		enemy.set("direction", direction)
 		get_node("/root/BossStage").add_child(enemy)

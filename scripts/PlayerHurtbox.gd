@@ -18,10 +18,10 @@ func start_invuln():
 func _blink_effect():
 	var object = get_parent()
 	
-	object.set_visible(not object.is_visible())
+	object.visible = not object.visible
 	
 func _stop_blink():
 	blinkTimer.stop()
 	
-	get_parent().set_visible(true)
+	get_parent().visible = true
 	

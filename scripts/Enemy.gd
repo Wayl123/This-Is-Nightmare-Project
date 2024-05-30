@@ -17,10 +17,7 @@ func _physics_process(delta : float):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	velocity.x = direction * SPEED
 
 	move_and_slide()
 

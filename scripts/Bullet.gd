@@ -15,7 +15,7 @@ func _ready():
 	connect("area_entered", Callable(self, "_hit_object"))
 
 	_set_bullet_collision()
-	timer.set_wait_time(expireTime)
+	timer.wait_time = expireTime
 	timer.start()
 	timer.timeout.connect(_bullet_expire)
 
@@ -34,7 +34,6 @@ func _hit_object(area : Area2D):
 	queue_free()
 	
 func _bullet_expire():
-	print_debug("expired")
 	queue_free()
 	
 func get_damage():
