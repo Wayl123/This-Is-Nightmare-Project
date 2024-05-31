@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bixlfq5u6x2xm"
-path="res://.godot/imported/grasstileset.png-9be5e219d897055174aff25c5b90d118.ctex"
+uid="uid://cnr6rs2w45dme"
+path="res://.godot/imported/spacethingtileset.png-4b4b137a54177962862dd1b9202eeb6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://image/grasstileset.png"
-dest_files=["res://.godot/imported/grasstileset.png-9be5e219d897055174aff25c5b90d118.ctex"]
+source_file="res://image/spacethingtileset.png"
+dest_files=["res://.godot/imported/spacethingtileset.png-4b4b137a54177962862dd1b9202eeb6f.ctex"]
 
 [params]
 
