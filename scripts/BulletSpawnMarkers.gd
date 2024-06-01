@@ -1,9 +1,15 @@
 extends Node2D
 
-@onready var bulletSpawnTopLeft = %BulletSpawnTopLeft
-@onready var bulletSpawnBottomLeft = %BulletSpawnBottomLeft
-@onready var bulletSpawnTopRight = %BulletSpawnTopRight
-@onready var bulletSpawnBottomRight = %BulletSpawnBottomRight
+@onready var bulletSpawnLeft1 = %BulletSpawnLeft1
+@onready var bulletSpawnLeft2 = %BulletSpawnLeft2
+@onready var bulletSpawnLeft3 = %BulletSpawnLeft3
+@onready var bulletSpawnLeft4 = %BulletSpawnLeft4
+@onready var bulletSpawnLeft5 = %BulletSpawnLeft5
+@onready var bulletSpawnRight1 = %BulletSpawnRight1
+@onready var bulletSpawnRight2 = %BulletSpawnRight2
+@onready var bulletSpawnRight3 = %BulletSpawnRight3
+@onready var bulletSpawnRight4 = %BulletSpawnRight4
+@onready var bulletSpawnRight5 = %BulletSpawnRight5
 @onready var bulletSpawnBoss = %BulletSpawnBoss
 @onready var bigBulletTimer = %BigBulletTimer
 @onready var bulletSpreadTimer = %BulletSpreadTimer
@@ -11,33 +17,28 @@ extends Node2D
 
 var BULLET = preload("res://scene/bullet.tscn")
 
-var order = 0
+var spawnList : Array
 
 func _ready():
 	bigBulletTimer.connect("timeout", Callable(self, "_spawn_big_bullet"))
 	bulletSpreadTimer.connect("timeout", Callable(self, "_spawn_spread_bullet").bind(0.2, 4, 8, 100.0))
-
-func _spawn_big_bullet():
-	var bullet = BULLET.instantiate()
-	var spawn : Marker2D
 	
-	match order:
-		0:
-			spawn = bulletSpawnBottomRight
-		1:
-			spawn = bulletSpawnTopLeft
-		2:
-			spawn = bulletSpawnBottomLeft
-		3, _:
-			spawn = bulletSpawnTopRight
-			
-	order = (order + 1) % 4
-	bullet.add_to_group("EnemyBullets")
-	bullet.transform = spawn.transform
-	bullet.scale = Vector2(4, 4)
-	bullet.set("speed", 50.0)
-	bullet.set("expireTime", 15.0)
-	get_node("/root/BossStage").add_child(bullet)
+	spawnList = [bulletSpawnLeft1, bulletSpawnLeft2, bulletSpawnLeft3, bulletSpawnLeft4, bulletSpawnLeft5, bulletSpawnRight1, bulletSpawnRight2, bulletSpawnRight3, bulletSpawnRight4, bulletSpawnRight5]
+
+func _spawn_big_bullet(spawnAmount : int = 1):
+	var bullet = BULLET.instantiate()
+	var pickSpawn = spawnList.duplicate()
+	
+	pickSpawn.shuffle()
+	pickSpawn.resize(spawnAmount)
+	
+	for spawn in pickSpawn:
+		bullet.add_to_group("EnemyBullets")
+		bullet.transform = spawn.transform
+		bullet.scale = Vector2(4, 4)
+		bullet.set("speed", 50.0)
+		bullet.set("expireTime", 15.0)
+		get_node("/root/BossStage").add_child(bullet)
 	
 func _spawn_spread_bullet(bulletScale : float = 1.0, spreadTimes : int = 1, spreadAmount : int = 1, bulletSpeed : float = 100.0):
 	var rng = RandomNumberGenerator.new()

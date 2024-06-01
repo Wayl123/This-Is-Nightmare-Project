@@ -9,7 +9,7 @@
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_que60"]
-radius = 42.0476
+radius = 28.0
 
 [node name="Boss" type="CharacterBody2D"]
 position = Vector2(0, -75)
@@ -38,15 +38,15 @@ debug_color = Color(0, 0.6, 0, 0.419608)
 
 [node name="MoveMarkerLeft" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-150, -75)
+position = Vector2(-200, -140)
 
 [node name="MoveMarkerMiddle" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -75)
+position = Vector2(0, -140)
 
 [node name="MoveMarkerRight" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(150, -75)
+position = Vector2(200, -140)
 
 [node name="MoveTimer" type="Timer" parent="."]
 unique_name_in_owner = true

@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://byj5kaq6epepe"]
+[gd_scene load_steps=7 format=3 uid="uid://chdrlri2m63br"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_kwrd2"]
-[ext_resource type="Texture2D" path="res://image/ghost1.png" id="2_cql7w"]
+[ext_resource type="Texture2D" uid="uid://cdbsohu3o3fi6" path="res://image/ads.png" id="2_p138y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0l1r4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_cql7w")
+"texture": ExtResource("2_p138y")
 }],
 "loop": true,
 "name": &"idle",

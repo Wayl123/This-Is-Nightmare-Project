@@ -13,10 +13,9 @@ extends Area2D
 var damage = 1
 
 func _ready():
-	bulletSprite.play("moving")
 	connect("area_entered", Callable(self, "_hit_object"))
 
-	_set_bullet_collision()
+	_set_bullet_property()
 	timer.wait_time = expireTime
 	timer.start()
 	timer.timeout.connect(_bullet_expire)
@@ -24,11 +23,13 @@ func _ready():
 func _physics_process(delta : float):
 	position += (transform.x / scale) * speed * delta
 
-func _set_bullet_collision():
+func _set_bullet_property():
 	if is_in_group("PlayerBullets"):
+		bulletSprite.play("playerBulletMoving")
 		set_collision_layer_value(3, true)
 		set_collision_mask_value(4, true)
 	elif is_in_group("EnemyBullets"):
+		bulletSprite.play("enemyBulletMoving")
 		set_collision_layer_value(5, true)
 		set_collision_mask_value(2, true)
 

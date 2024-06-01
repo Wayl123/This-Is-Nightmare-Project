@@ -18,10 +18,16 @@ func _physics_process(delta : float):
 		velocity.y += gravity * delta
 
 	velocity.x = direction * SPEED
+	
+	if is_on_wall():
+		_despawn()
 
 	move_and_slide()
 
 func _got_hit(area : Area2D):
 	if area.is_in_group("PlayerBullets"):
 		get_tree().get_first_node_in_group("Player").enemy_killed()
+	queue_free()
+
+func _despawn():
 	queue_free()

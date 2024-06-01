@@ -27,7 +27,7 @@ func _physics_process(delta : float):
 	call_deferred("_random_move", delta)
 	
 	if global_position != destPosition:
-		speed = move_toward(speed, (MAX_SPEED if global_position.distance_to(destPosition) > 50 else MIN_SPEED), ACCEL)
+		speed = move_toward(speed, (MAX_SPEED if global_position.distance_to(destPosition) > 20 else MIN_SPEED), ACCEL)
 		global_position = global_position.move_toward(destPosition, delta * speed)
 
 func _got_hit(area : Area2D):
@@ -50,7 +50,6 @@ func _random_move(delta : float):
 		var rng = RandomNumberGenerator.new()
 		moveTimer.wait_time = rng.randf_range(0.1, 5.0)
 		moveTimer.start()
-		print_debug(moveTimer.wait_time)
 		await moveTimer.timeout
 		
 		var randomPosition = rng.randi_range(0, 1) == 0
@@ -63,6 +62,3 @@ func _random_move(delta : float):
 				destPosition = moveMarkerLeft.position if randomPosition else moveMarkerMiddle.position
 			_:
 				destPosition = moveMarkerMiddle.position
-		
-		if rng.randi_range(0, 1) == 0:
-			global_position = destPosition
