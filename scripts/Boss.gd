@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var hurtbox = %Hurtbox
+@onready var hurtboxCollision = %HurtboxCollisionShape2D
 @onready var moveMarkerLeft = %MoveMarkerLeft
 @onready var moveMarkerMiddle = %MoveMarkerMiddle
 @onready var moveMarkerRight = %MoveMarkerRight
@@ -24,6 +25,7 @@ var health = TOTAL_HEALTH
 
 func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
+	enemySpawn.connect("crystalsDestroyed", Callable(self, "_set_vuln"))
 	
 	destPosition = moveMarkerMiddle.position
 	
@@ -66,12 +68,17 @@ func _phase_change(phase : int):
 			bulletSpawn.toggle_bullet_spread_timer(true, 0.5, 4, 16, 100.0, 3.0)
 			bulletSpawn.change_big_bullet_spawn_timer(3.0)
 			enemySpawn.change_spawn_timer(1.5)
+			enemySpawn.call_deferred("spawn_boss_crystal")
+			hurtboxCollision.set_deferred("disabled", true)
 		1, _:
 			bulletSpawn.toggle_bullet_spread_timer(false)
 			bulletSpawn.change_big_bullet_spawn_amount(1)
 			bulletSpawn.change_big_bullet_spawn_timer(5.0)
 			enemySpawn.change_spawn_timer(3.0)
 			enemySpawn.change_spawn_amount(1)
+			
+func _set_vuln():
+	hurtboxCollision.set_deferred("disabled", false)
 	
 func _random_move(delta : float):
 	if global_position == destPosition and moveTimer.is_stopped():

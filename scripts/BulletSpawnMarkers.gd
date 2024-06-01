@@ -19,7 +19,7 @@ extends Node2D
 var BULLET = preload("res://scene/bullet.tscn")
 
 var spawnList : Array
-var bigSpawnAmount : int = 1
+var bigSpawnAmount = 1
 
 func _ready():
 	bigBulletTimer.connect("timeout", Callable(self, "_spawn_big_bullet"))

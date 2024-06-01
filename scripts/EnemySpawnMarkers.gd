@@ -1,5 +1,7 @@
 extends Node2D
 
+signal crystalsDestroyed
+
 @onready var enemySpawnLeft1 = %EnemySpawnLeft1
 @onready var enemySpawnLeft2 = %EnemySpawnLeft2
 @onready var enemySpawnLeft3 = %EnemySpawnLeft3
@@ -8,12 +10,18 @@ extends Node2D
 @onready var enemySpawnRight2 = %EnemySpawnRight2
 @onready var enemySpawnRight3 = %EnemySpawnRight3
 @onready var enemySpawnRight4 = %EnemySpawnRight4
+@onready var crystalSpawn1 = %CrystalSpawn1
+@onready var crystalSpawn2 = %CrystalSpawn2
+@onready var crystalSpawn3 = %CrystalSpawn3
+@onready var crystalSpawn4 = %CrystalSpawn4
 @onready var spawnTimer = %SpawnTimer
 
 var ENEMY = preload("res://scene/enemy.tscn")
+var BOSSCRYSTAL = preload("res://scene/boss_crystal.tscn")
 
 var spawnList : Array
-var spawnAmount : int = 1
+var crystalSpawnList : Array
+var spawnAmount = 1
 
 func _ready():
 	spawnTimer.connect("timeout", Callable(self, "_spawn_enemy"))
@@ -21,6 +29,8 @@ func _ready():
 	spawnList = [enemySpawnLeft1, enemySpawnLeft2, enemySpawnLeft3, enemySpawnLeft4, enemySpawnRight1, enemySpawnRight2, enemySpawnRight3, enemySpawnRight4]
 	for spawn in spawnList:
 		spawn.connect("spawn_enemy", Callable(self, "_spawn_animation_finished").bind(spawn.position))
+		
+	crystalSpawnList = [crystalSpawn1, crystalSpawn2, crystalSpawn3, crystalSpawn4]
 
 func _spawn_enemy():
 		var pickSpawn = spawnList.duplicate()
@@ -45,3 +55,16 @@ func change_spawn_timer(time : float):
 	
 func change_spawn_amount(amount : int):
 	spawnAmount = amount
+	
+func spawn_boss_crystal():
+	for spawn in crystalSpawnList:
+		var bossCrystal = BOSSCRYSTAL.instantiate()
+		bossCrystal.add_to_group("BossCrystals")
+		bossCrystal.position = spawn.position
+		bossCrystal.connect("destroyed", Callable(self, "_all_crystal_destroyed"))
+		get_node("/root/BossStage").add_child(bossCrystal)
+		
+func _all_crystal_destroyed():
+	print_debug(get_tree().get_nodes_in_group("BossCrystals").size())
+	if get_tree().get_nodes_in_group("BossCrystals").size() <= 0:
+		crystalsDestroyed.emit()

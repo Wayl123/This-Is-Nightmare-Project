@@ -38,6 +38,22 @@ position = Vector2(250, 0)
 unique_name_in_owner = true
 position = Vector2(250, 70)
 
+[node name="CrystalSpawn1" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-200, -140)
+
+[node name="CrystalSpawn2" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-200, 140)
+
+[node name="CrystalSpawn3" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(200, -140)
+
+[node name="CrystalSpawn4" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(200, 140)
+
 [node name="SpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0

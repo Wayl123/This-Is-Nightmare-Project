@@ -34,7 +34,8 @@ func _set_bullet_property():
 		set_collision_mask_value(2, true)
 
 func _hit_object(area : Area2D):
-	queue_free()
+	if is_in_group("PlayerBullets"):
+		queue_free()
 	
 func _bullet_expire():
 	queue_free()
