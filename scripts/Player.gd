@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 @onready var animation = %AnimatedSprite2D
+@onready var collision = %CollisionShape2D
+@onready var dropTimer = %DropThroughTimer
 @onready var hurtbox = %Hurtbox
 @onready var invulnTimer = %HitInvulnerabilityTimer
 @onready var gun = %Gun
@@ -22,11 +24,16 @@ var shootUpAnimation = "ShootUp"
 var facingAngle
 
 func _ready():
+	dropTimer.connect("timeout", Callable(self, "_stop_drop"))
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
 
 func _physics_process(delta : float):
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		
+	if Input.is_action_just_pressed("Down") and is_on_floor():
+		set_collision_mask_value(7, false)
+		dropTimer.start()
 
 	if not Input.is_action_pressed("Stop"):
 		if Input.is_action_just_pressed("Jump") and is_on_floor():
@@ -60,6 +67,9 @@ func _process(delta : float):
 		elif abs(facingAngle + (PI / 2.0)) < 0.000001:
 			animation.play(shootUpAnimation)
 		gun.shoot()
+		
+func _stop_drop():
+	set_collision_mask_value(7, true)
 		
 func _got_hit(area : Area2D):
 	if area.is_in_group("Killbox"):
