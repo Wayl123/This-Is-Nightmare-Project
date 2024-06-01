@@ -14,6 +14,17 @@ config/name="Godot Project"
 run/main_scene="res://scene/boss_stage.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
 [input]
 
 Left={
@@ -65,3 +76,4 @@ Stop={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.180392, 0.0666667, 0.415686, 1)

@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 var BULLET = preload("res://scene/bullet.tscn")
 
-const SPEED = 300.0
+const SPEED = 150
 const JUMP_VELOCITY = -400.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

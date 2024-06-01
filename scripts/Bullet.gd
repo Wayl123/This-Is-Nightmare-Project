@@ -1,10 +1,11 @@
 extends Area2D
 
 @onready var timer = %BulletExpirationTimer
-
-var speed = 750
+@onready var bulletSprite = %AnimatedSprite2D
+var speed = 300
 
 func _ready():
+	bulletSprite.play("moving")
 	connect("area_entered", Callable(self, "_hit_object"))
 
 	timer.timeout.connect(_bullet_expire)
