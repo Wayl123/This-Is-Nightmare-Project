@@ -10,27 +10,28 @@ extends Node2D
 @onready var bulletSpawnRight3 = %BulletSpawnRight3
 @onready var bulletSpawnRight4 = %BulletSpawnRight4
 @onready var bulletSpawnRight5 = %BulletSpawnRight5
-@onready var bulletSpawnBoss = %BulletSpawnBoss
 @onready var bigBulletTimer = %BigBulletTimer
 @onready var bulletSpreadTimer = %BulletSpreadTimer
 @onready var bulletSpreadGapTimer = %BulletSpreadGapTimer
 
+@onready var boss = get_tree().get_first_node_in_group("Boss")
+
 var BULLET = preload("res://scene/bullet.tscn")
 
 var spawnList : Array
+var bigSpawnAmount : int = 1
 
 func _ready():
 	bigBulletTimer.connect("timeout", Callable(self, "_spawn_big_bullet"))
-	bulletSpreadTimer.connect("timeout", Callable(self, "_spawn_spread_bullet").bind(0.2, 4, 8, 100.0))
 	
 	spawnList = [bulletSpawnLeft1, bulletSpawnLeft2, bulletSpawnLeft3, bulletSpawnLeft4, bulletSpawnLeft5, bulletSpawnRight1, bulletSpawnRight2, bulletSpawnRight3, bulletSpawnRight4, bulletSpawnRight5]
 
-func _spawn_big_bullet(spawnAmount : int = 1):
+func _spawn_big_bullet():
 	var bullet = BULLET.instantiate()
 	var pickSpawn = spawnList.duplicate()
 	
 	pickSpawn.shuffle()
-	pickSpawn.resize(spawnAmount)
+	pickSpawn.resize(bigSpawnAmount)
 	
 	for spawn in pickSpawn:
 		bullet.add_to_group("EnemyBullets")
@@ -50,7 +51,7 @@ func _spawn_spread_bullet(bulletScale : float = 1.0, spreadTimes : int = 1, spre
 		for m in spreadAmount:
 			var bullet = BULLET.instantiate()
 			bullet.add_to_group("EnemyBullets")
-			bullet.transform = bulletSpawnBoss.global_transform
+			bullet.transform = boss.global_transform
 			bullet.rotation = bullet.rotation + m * equalSpread + n * (equalSpread / 2.0) + randomSpread
 			bullet.scale = Vector2(bulletScale, bulletScale)
 			bullet.set("speed", bulletSpeed)
@@ -58,3 +59,17 @@ func _spawn_spread_bullet(bulletScale : float = 1.0, spreadTimes : int = 1, spre
 			get_node("/root/BossStage").add_child(bullet)
 		await bulletSpreadGapTimer.timeout
 	bulletSpreadGapTimer.stop()
+	
+func change_big_bullet_spawn_timer(time : float):
+	bigBulletTimer.wait_time = time
+
+func change_big_bullet_spawn_amount(amount : int):
+	bigSpawnAmount = amount
+	
+func toggle_bullet_spread_timer(start : bool = false, bulletScale : float = 1.0, spreadTimes : int = 1, spreadAmount : int = 1, bulletSpeed : float = 100.0, shotTime : float = 5.0):
+	if start:
+		bulletSpreadTimer.connect("timeout", Callable(self, "_spawn_spread_bullet").bind(bulletScale, spreadTimes, spreadAmount, bulletSpeed))
+		bulletSpreadTimer.wait_time = shotTime
+		bulletSpreadTimer.start()
+	else:
+		bulletSpreadTimer.stop()

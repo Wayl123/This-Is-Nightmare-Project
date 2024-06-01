@@ -13,6 +13,7 @@ extends Node2D
 var ENEMY = preload("res://scene/enemy.tscn")
 
 var spawnList : Array
+var spawnAmount : int = 1
 
 func _ready():
 	spawnTimer.connect("timeout", Callable(self, "_spawn_enemy"))
@@ -21,7 +22,7 @@ func _ready():
 	for spawn in spawnList:
 		spawn.connect("spawn_enemy", Callable(self, "_spawn_animation_finished").bind(spawn.position))
 
-func _spawn_enemy(spawnAmount : int = 1):
+func _spawn_enemy():
 		var pickSpawn = spawnList.duplicate()
 		
 		pickSpawn.shuffle()
@@ -38,3 +39,9 @@ func _spawn_animation_finished(spawnPosition : Vector2):
 	direction = 1.0 if enemy.position.x < 0 else -1.0
 	enemy.set("direction", direction)
 	get_node("/root/BossStage").add_child(enemy)
+	
+func change_spawn_timer(time : float):
+	spawnTimer.wait_time = time
+	
+func change_spawn_amount(amount : int):
+	spawnAmount = amount

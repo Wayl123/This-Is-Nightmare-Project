@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/BulletSpawnMarkers.gd" id="1_3thu7"]
 
-[node name="BulletSpawnMarkers" type="Node2D"]
+[node name="BulletSpawnMarkers" type="Node2D" groups=["BulletSpawn"]]
 script = ExtResource("1_3thu7")
 
 [node name="BulletSpawnLeft1" type="Marker2D" parent="."]
@@ -49,10 +49,6 @@ rotation = -3.14159
 unique_name_in_owner = true
 position = Vector2(400, 140)
 rotation = -3.14159
-
-[node name="BulletSpawnBoss" type="Marker2D" parent="."]
-unique_name_in_owner = true
-rotation = 1.5708
 
 [node name="BigBulletTimer" type="Timer" parent="."]
 unique_name_in_owner = true

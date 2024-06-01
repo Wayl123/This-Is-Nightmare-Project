@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx84oplhxfuqq"]
+[gd_scene load_steps=7 format=3 uid="uid://dx84oplhxfuqq"]
 
 [ext_resource type="PackedScene" uid="uid://3xdia5evwk2k" path="res://Tilemap/space_tile_map.tscn" id="1_qo3u0"]
 [ext_resource type="PackedScene" uid="uid://qhe00d1dk7d3" path="res://scene/player.tscn" id="2_mj0qv"]
 [ext_resource type="PackedScene" uid="uid://dlmfps6s4iwg3" path="res://scene/boss.tscn" id="3_qvhj0"]
 [ext_resource type="PackedScene" uid="uid://bgmwwij4ehamq" path="res://scene/enemy_spawn_markers.tscn" id="4_ctuye"]
+[ext_resource type="PackedScene" uid="uid://d14sbtfqtrwhj" path="res://scene/bullet_spawn_markers.tscn" id="4_cxest"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6twv0"]
 size = Vector2(1206, 249.5)
@@ -23,6 +24,8 @@ layer_0/tile_data = PackedInt32Array(393195, 196608, 1, 458731, 196608, 1, 52426
 [node name="Boss" parent="." instance=ExtResource("3_qvhj0")]
 z_index = -1
 position = Vector2(0, -140)
+
+[node name="BulletSpawnMarkers" parent="." instance=ExtResource("4_cxest")]
 
 [node name="EnemySpawnMarkers" parent="." instance=ExtResource("4_ctuye")]
 

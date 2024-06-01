@@ -6,6 +6,9 @@ extends CharacterBody2D
 @onready var moveMarkerRight = %MoveMarkerRight
 @onready var moveTimer = %MoveTimer
 
+@onready var bulletSpawn = get_tree().get_first_node_in_group("BulletSpawn")
+@onready var enemySpawn = get_tree().get_first_node_in_group("EnemySpawn")
+
 var ENEMY = preload("res://scene/enemy.tscn")
 
 const MAX_SPEED = 200.0
@@ -15,6 +18,7 @@ const TOTAL_HEALTH = 200
 
 var destPosition : Vector2
 
+var phase = 1
 var speed = 0
 var health = TOTAL_HEALTH
 
@@ -33,17 +37,43 @@ func _physics_process(delta : float):
 func _got_hit(area : Area2D):
 	health -= area.get_damage()
 	var healthPercent = float(health) / float(TOTAL_HEALTH)
+	var phaseChange : int
 	
-	if healthPercent <= 25: #Phase 4
-		pass
-	elif healthPercent <= 50: #Phase 3
-		pass
-	elif healthPercent <= 75: #Phase 2
-		pass
-	else: #Phase 1
-		pass
+	if healthPercent <= 0.25:
+		phaseChange = 4
+	elif healthPercent <= 0.50:
+		phaseChange = 3
+	elif healthPercent <= 0.75:
+		phaseChange = 2
+	else:
+		phaseChange = 1
+		
+	phaseChange = 4
 	
-	print_debug(healthPercent)
+	#only run phase change once
+	if phase != phaseChange:
+		phase = phaseChange
+		_phase_change(phaseChange)
+		
+func _phase_change(phase : int):
+	match phase:
+		2:
+			bulletSpawn.toggle_bullet_spread_timer(true, 0.5, 4, 8, 100.0, 5.0)
+			bulletSpawn.change_big_bullet_spawn_amount(2)
+		3:
+			bulletSpawn.toggle_bullet_spread_timer(false)
+			enemySpawn.change_spawn_timer(2.0)
+			enemySpawn.change_spawn_amount(3)
+		4:
+			bulletSpawn.toggle_bullet_spread_timer(true, 0.5, 4, 16, 100.0, 3.0)
+			bulletSpawn.change_big_bullet_spawn_timer(3.0)
+			enemySpawn.change_spawn_timer(1.5)
+		1, _:
+			bulletSpawn.toggle_bullet_spread_timer(false)
+			bulletSpawn.change_big_bullet_spawn_amount(1)
+			bulletSpawn.change_big_bullet_spawn_timer(5.0)
+			enemySpawn.change_spawn_timer(3.0)
+			enemySpawn.change_spawn_amount(1)
 	
 func _random_move(delta : float):
 	if global_position == destPosition and moveTimer.is_stopped():
