@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed : float = 750.0:
+@export var speed : float = 300.0:
 	set(value):
 		speed = value
 @export var expireTime : float = 5.0:
@@ -8,10 +8,12 @@ extends Area2D
 		expireTime = value
 
 @onready var timer = %BulletExpirationTimer
+@onready var bulletSprite = %AnimatedSprite2D
 
 var damage = 1
 
 func _ready():
+	bulletSprite.play("moving")
 	connect("area_entered", Callable(self, "_hit_object"))
 
 	_set_bullet_collision()

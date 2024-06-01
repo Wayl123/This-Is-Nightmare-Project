@@ -1,22 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlmfps6s4iwg3"]
+[gd_scene load_steps=7 format=3 uid="uid://dlmfps6s4iwg3"]
 
 [ext_resource type="Script" path="res://scripts/Boss.gd" id="1_526fu"]
-[ext_resource type="Texture2D" uid="uid://dk2jfwufx2qk8" path="res://image/boss.png" id="2_dcoos"]
-[ext_resource type="PackedScene" uid="uid://c0u5y5geyylo5" path="res://scene/enemy_spawn_markers.tscn" id="3_ba5es"]
-[ext_resource type="PackedScene" uid="uid://cotpr6lp4d1fl" path="res://scene/bullet_spawn_markers.tscn" id="4_rxmkd"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_k78ym"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_dcoos")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://cj7khw2p3i16w" path="res://image/boss_monster.png" id="2_m53m1"]
+[ext_resource type="PackedScene" uid="uid://d14sbtfqtrwhj" path="res://scene/bullet_spawn_markers.tscn" id="3_xu1yu"]
+[ext_resource type="PackedScene" uid="uid://bgmwwij4ehamq" path="res://scene/enemy_spawn_markers.tscn" id="4_n3bi5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s7k5g"]
+radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_que60"]
 radius = 42.0476
@@ -27,10 +17,8 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_526fu")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-sprite_frames = SubResource("SpriteFrames_k78ym")
-animation = &"idle"
+[node name="BossMonster" type="Sprite2D" parent="."]
+texture = ExtResource("2_m53m1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_s7k5g")
@@ -44,9 +32,9 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_que60")
 debug_color = Color(0, 0.6, 0, 0.419608)
 
-[node name="EnemySpawnMarkers" parent="." instance=ExtResource("3_ba5es")]
+[node name="BulletSpawnMarkers" parent="." instance=ExtResource("3_xu1yu")]
 
-[node name="BulletSpawnMarkers" parent="." instance=ExtResource("4_rxmkd")]
+[node name="EnemySpawnMarkers" parent="." instance=ExtResource("4_n3bi5")]
 
 [node name="MoveMarkerLeft" type="Marker2D" parent="."]
 unique_name_in_owner = true

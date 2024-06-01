@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0u5y5geyylo5"]
+[gd_scene load_steps=2 format=3 uid="uid://bgmwwij4ehamq"]
 
 [ext_resource type="Script" path="res://scripts/EnemySpawnMarkers.gd" id="1_5bhma"]
 

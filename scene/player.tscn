@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_1jxqe"]
 [ext_resource type="Texture2D" uid="uid://dfldir2xtkh7l" path="res://image/player.png" id="2_jihsy"]
-[ext_resource type="Texture2D" path="res://image/playerghost.png" id="3_a0eph"]
+[ext_resource type="Texture2D" uid="uid://0pidrwi2isf5" path="res://image/playerghost.png" id="3_a0eph"]
 [ext_resource type="Script" path="res://scripts/PlayerHurtbox.gd" id="4_t8vqb"]
 [ext_resource type="Script" path="res://scripts/Gun.gd" id="5_xoien"]
 
