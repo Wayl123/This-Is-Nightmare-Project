@@ -28,6 +28,7 @@ height = 26.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 0
+collision_mask = 65
 script = ExtResource("1_kwrd2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

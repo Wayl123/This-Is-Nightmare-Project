@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var animation = %AnimatedSprite2D
 @onready var collision = %CollisionShape2D
 @onready var dropTimer = %DropThroughTimer
+@onready var lastStandTimer = %LastStandTimer
 @onready var hurtbox = %Hurtbox
 @onready var invulnTimer = %HitInvulnerabilityTimer
 @onready var gun = %Gun
@@ -21,10 +22,11 @@ var shootSideAnimation = "ShootSide"
 var shootDownAnimation = "ShootDown"
 var shootUpAnimation = "ShootUp"
 
-var facingAngle
+var facingAngle = 0.0
 
 func _ready():
 	dropTimer.connect("timeout", Callable(self, "_stop_drop"))
+	lastStandTimer.connect("timeout", Callable(self, "_last_stand_expire"))
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
 
 func _physics_process(delta : float):
@@ -85,6 +87,10 @@ func _got_hit(area : Area2D):
 		
 func _last_stand(isLS : bool):
 	lastStandMode = isLS
+	if isLS:
+		lastStandTimer.start()
+	else:
+		lastStandTimer.stop()
 	idleAnimation = "IdleLS" if isLS else "Idle"
 	shootSideAnimation = "ShootSideLS" if isLS else "ShootSide"
 	shootDownAnimation = "ShootDownLS" if isLS else "ShootDown"
@@ -93,3 +99,6 @@ func _last_stand(isLS : bool):
 func enemy_killed():
 	if lastStandMode:
 		_last_stand(false)
+
+func _last_stand_expire():
+	print_debug("also dead")
