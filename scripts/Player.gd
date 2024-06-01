@@ -19,6 +19,8 @@ var shootSideAnimation = "ShootSide"
 var shootDownAnimation = "ShootDown"
 var shootUpAnimation = "ShootUp"
 
+var facingAngle
+
 func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
 
@@ -34,18 +36,29 @@ func _physics_process(delta : float):
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = 0
-	animation.play(idleAnimation)
+		
+	if not Input.is_action_pressed("Shoot") and not Input.is_action_pressed("Stop"):
+		animation.play(idleAnimation)
 	
-
 	move_and_slide()
 	
 func _process(delta : float):
 	if Input.is_action_pressed("Left") or Input.is_action_pressed("Right") or Input.is_action_pressed("Up") or Input.is_action_pressed("Down"):
 		var vector = Input.get_vector("Left", "Right", "Up", "Down")
-		var roundAngle = round(vector.angle() / (PI / 2.0)) * (PI / 2.0)
-		gun.rotation = roundAngle
+		facingAngle = round(vector.angle() / (PI / 2.0)) * (PI / 2.0)
+		gun.rotation = facingAngle
 	
 	if (Input.is_action_pressed("Shoot") or Input.is_action_pressed("Stop")) and gunDelay.is_stopped():
+		if abs(facingAngle - 0) < 0.000001:
+			animation.flip_h = false
+			animation.play(shootSideAnimation)
+		elif abs(facingAngle - PI) < 0.000001:
+			animation.flip_h = true
+			animation.play(shootSideAnimation)
+		elif abs(facingAngle - (PI / 2.0)) < 0.000001:
+			animation.play(shootDownAnimation)
+		elif abs(facingAngle + (PI / 2.0)) < 0.000001:
+			animation.play(shootUpAnimation)
 		gun.shoot()
 		
 func _got_hit(area : Area2D):
