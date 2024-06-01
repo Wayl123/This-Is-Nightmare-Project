@@ -20,7 +20,7 @@ func _ready():
 	timer.timeout.connect(_bullet_expire)
 
 func _physics_process(delta : float):
-	position += transform.x * speed * delta
+	position += (transform.x / scale) * speed * delta
 
 func _set_bullet_collision():
 	if is_in_group("PlayerBullets"):

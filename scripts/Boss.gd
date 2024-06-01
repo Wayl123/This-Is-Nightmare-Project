@@ -29,7 +29,6 @@ func _physics_process(delta : float):
 	if global_position != destPosition:
 		speed = move_toward(speed, (MAX_SPEED if global_position.distance_to(destPosition) > 50 else MIN_SPEED), ACCEL)
 		global_position = global_position.move_toward(destPosition, delta * speed)
-		print_debug(speed)
 
 func _got_hit(area : Area2D):
 	health -= area.get_damage()

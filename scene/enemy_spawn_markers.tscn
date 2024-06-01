@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/EnemySpawnMarkers.gd" id="1_5bhma"]
 
-[node name="EnemySpawnMarkers" type="Node"]
+[node name="EnemySpawnMarkers" type="Node2D"]
 script = ExtResource("1_5bhma")
 
 [node name="EnemySpawnLeft" type="Marker2D" parent="."]
