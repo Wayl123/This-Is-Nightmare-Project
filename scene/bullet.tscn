@@ -105,7 +105,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_qvyqe")
 }],
 "loop": true,
-"name": &"shmoving",
+"name": &"moving",
 "speed": 20.0
 }]
 
@@ -118,9 +118,9 @@ collision_mask = 4
 script = ExtResource("1_m6akv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_8utjn")
-animation = &"shmoving"
-frame_progress = 0.151882
+animation = &"moving"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5u8qp")
