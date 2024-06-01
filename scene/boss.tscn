@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlmfps6s4iwg3"]
+[gd_scene load_steps=6 format=3 uid="uid://dlmfps6s4iwg3"]
 
 [ext_resource type="Script" path="res://scripts/Boss.gd" id="1_526fu"]
 [ext_resource type="Texture2D" uid="uid://cj7khw2p3i16w" path="res://image/boss_monster.png" id="2_m53m1"]
 [ext_resource type="PackedScene" uid="uid://d14sbtfqtrwhj" path="res://scene/bullet_spawn_markers.tscn" id="3_xu1yu"]
-[ext_resource type="PackedScene" uid="uid://bgmwwij4ehamq" path="res://scene/enemy_spawn_markers.tscn" id="4_n3bi5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s7k5g"]
 radius = 4.0
@@ -33,8 +32,6 @@ shape = SubResource("CircleShape2D_que60")
 debug_color = Color(0, 0.6, 0, 0.419608)
 
 [node name="BulletSpawnMarkers" parent="." instance=ExtResource("3_xu1yu")]
-
-[node name="EnemySpawnMarkers" parent="." instance=ExtResource("4_n3bi5")]
 
 [node name="MoveMarkerLeft" type="Marker2D" parent="."]
 unique_name_in_owner = true

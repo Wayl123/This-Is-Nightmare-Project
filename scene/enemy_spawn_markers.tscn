@@ -1,39 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgmwwij4ehamq"]
+[gd_scene load_steps=3 format=3 uid="uid://bgmwwij4ehamq"]
 
 [ext_resource type="Script" path="res://scripts/EnemySpawnMarkers.gd" id="1_5bhma"]
+[ext_resource type="PackedScene" uid="uid://d3otmi6pm5yd1" path="res://scene/enemy_spawn.tscn" id="2_rdql6"]
 
 [node name="EnemySpawnMarkers" type="Node2D"]
 script = ExtResource("1_5bhma")
 
-[node name="EnemySpawnLeft1" type="Marker2D" parent="."]
+[node name="EnemySpawnLeft1" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
 position = Vector2(-250, -140)
 
-[node name="EnemySpawnLeft2" type="Marker2D" parent="."]
+[node name="EnemySpawnLeft2" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
 position = Vector2(-250, -70)
 
-[node name="EnemySpawnLeft3" type="Marker2D" parent="."]
+[node name="EnemySpawnLeft3" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
 position = Vector2(-250, 0)
 
-[node name="EnemySpawnLeft4" type="Marker2D" parent="."]
+[node name="EnemySpawnLeft4" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
 position = Vector2(-250, 70)
 
-[node name="EnemySpawnRight1" type="Marker2D" parent="."]
+[node name="EnemySpawnRight1" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
 position = Vector2(250, -140)
 
-[node name="EnemySpawnRight2" type="Marker2D" parent="."]
+[node name="EnemySpawnRight2" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
 position = Vector2(250, -70)
 
-[node name="EnemySpawnRight3" type="Marker2D" parent="."]
+[node name="EnemySpawnRight3" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
 position = Vector2(250, 0)
 
-[node name="EnemySpawnRight4" type="Marker2D" parent="."]
+[node name="EnemySpawnRight4" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
 position = Vector2(250, 70)
 

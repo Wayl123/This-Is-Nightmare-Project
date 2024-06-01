@@ -15,6 +15,9 @@ var lastStandMode = false
 var isInvulerable = false
 
 var idleAnimation = "Idle"
+var shootSideAnimation = "ShootSide"
+var shootDownAnimation = "ShootDown"
+var shootUpAnimation = "ShootUp"
 
 func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
@@ -31,8 +34,8 @@ func _physics_process(delta : float):
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = 0
-		
 	animation.play(idleAnimation)
+	
 
 	move_and_slide()
 	
@@ -60,6 +63,9 @@ func _got_hit(area : Area2D):
 func _last_stand(isLS : bool):
 	lastStandMode = isLS
 	idleAnimation = "IdleLS" if isLS else "Idle"
+	shootSideAnimation = "ShootSideLS" if isLS else "ShootSide"
+	shootDownAnimation = "ShootDownLS" if isLS else "ShootDown"
+	shootUpAnimation = "ShootUpLS" if isLS else "ShootUp"
 	
 func enemy_killed():
 	if lastStandMode:

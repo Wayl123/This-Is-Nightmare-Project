@@ -18,17 +18,23 @@ func _ready():
 	spawnTimer.connect("timeout", Callable(self, "_spawn_enemy"))
 	
 	spawnList = [enemySpawnLeft1, enemySpawnLeft2, enemySpawnLeft3, enemySpawnLeft4, enemySpawnRight1, enemySpawnRight2, enemySpawnRight3, enemySpawnRight4]
+	for spawn in spawnList:
+		spawn.connect("spawn_enemy", Callable(self, "_spawn_animation_finished").bind(spawn.position))
 
 func _spawn_enemy(spawnAmount : int = 1):
-		var enemy = ENEMY.instantiate()
 		var pickSpawn = spawnList.duplicate()
-		var direction = 1.0
 		
 		pickSpawn.shuffle()
 		pickSpawn.resize(spawnAmount)
 			
 		for spawn in pickSpawn:
-			enemy.position = spawn.position
-			direction = 1.0 if enemy.position.x < 0 else -1.0
-			enemy.set("direction", direction)
-			get_node("/root/BossStage").add_child(enemy)
+			spawn.play_animation("spawning")
+
+func _spawn_animation_finished(spawnPosition : Vector2):
+	var enemy = ENEMY.instantiate()
+	var direction = 1.0
+	
+	enemy.position = spawnPosition
+	direction = 1.0 if enemy.position.x < 0 else -1.0
+	enemy.set("direction", direction)
+	get_node("/root/BossStage").add_child(enemy)

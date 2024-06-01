@@ -1,10 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://qhe00d1dk7d3"]
+[gd_scene load_steps=15 format=3 uid="uid://qhe00d1dk7d3"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_1jxqe"]
 [ext_resource type="Texture2D" uid="uid://dfldir2xtkh7l" path="res://image/player.png" id="2_jihsy"]
-[ext_resource type="Texture2D" uid="uid://0pidrwi2isf5" path="res://image/playerghost.png" id="3_a0eph"]
+[ext_resource type="Texture2D" uid="uid://chrxed7kumd0f" path="res://image/last_stand_player.png" id="3_rmn6a"]
+[ext_resource type="Texture2D" uid="uid://cxmaj4v56cnbt" path="res://image/shooting_down.png" id="4_avuki"]
 [ext_resource type="Script" path="res://scripts/PlayerHurtbox.gd" id="4_t8vqb"]
+[ext_resource type="Texture2D" uid="uid://cvu80oj8bs0bc" path="res://image/last_stand_shooting_down.png" id="5_qhwpb"]
 [ext_resource type="Script" path="res://scripts/Gun.gd" id="5_xoien"]
+[ext_resource type="Texture2D" uid="uid://cmj1lv7mod5ei" path="res://image/player_right_left.png" id="6_top04"]
+[ext_resource type="Texture2D" uid="uid://fyk648irlxt5" path="res://image/last_stand_right_left.png" id="7_0sdpr"]
+[ext_resource type="Texture2D" uid="uid://cyb058b0e16u" path="res://image/shooting_up.png" id="8_t64kj"]
+[ext_resource type="Texture2D" uid="uid://cvfr5ealun3uk" path="res://image/last_stand_shooting_up.png" id="9_c1p7x"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_atmel"]
 animations = [{
@@ -18,10 +24,58 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_a0eph")
+"texture": ExtResource("3_rmn6a")
 }],
 "loop": true,
 "name": &"IdleLS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_avuki")
+}],
+"loop": true,
+"name": &"ShootDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhwpb")
+}],
+"loop": true,
+"name": &"ShootDownLS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_top04")
+}],
+"loop": true,
+"name": &"ShootSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_0sdpr")
+}],
+"loop": true,
+"name": &"ShootSideLS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_t64kj")
+}],
+"loop": true,
+"name": &"ShootUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_c1p7x")
+}],
+"loop": true,
+"name": &"ShootUpLS",
 "speed": 5.0
 }]
 
@@ -40,7 +94,7 @@ script = ExtResource("1_1jxqe")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_atmel")
-animation = &"IdleLS"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_sf0vn")

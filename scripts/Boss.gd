@@ -11,12 +11,12 @@ var ENEMY = preload("res://scene/enemy.tscn")
 const MAX_SPEED = 200.0
 const MIN_SPEED = 50.0
 const ACCEL = 10.0
-const TOTAL_HEALTH = 1000
+const TOTAL_HEALTH = 200
 
 var destPosition : Vector2
 
 var speed = 0
-var health = 1000
+var health = TOTAL_HEALTH
 
 func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
