@@ -1,9 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://cs44vt1dh2yss"]
+[gd_scene load_steps=51 format=3 uid="uid://cs44vt1dh2yss"]
 
 [ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_m6akv"]
 [ext_resource type="Texture2D" uid="uid://ib6m3asq0kwu" path="res://image/bigbullet.png" id="2_oyhbv"]
 [ext_resource type="Texture2D" uid="uid://mx1vgy36qv0i" path="res://image/boss_bullet.png" id="2_pf05a"]
 [ext_resource type="Texture2D" uid="uid://bshmu7rssrao7" path="res://image/player_bullet.png" id="2_qgiwg"]
+[ext_resource type="Texture2D" uid="uid://dgkg0bjqsttp5" path="res://image/bullet_impact.png" id="4_a2vjj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45xhu"]
 atlas = ExtResource("2_oyhbv")
@@ -84,6 +85,42 @@ region = Rect2(88, 0, 11, 11)
 [sub_resource type="AtlasTexture" id="AtlasTexture_s022c"]
 atlas = ExtResource("2_pf05a")
 region = Rect2(99, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tst77"]
+atlas = ExtResource("4_a2vjj")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7suxn"]
+atlas = ExtResource("4_a2vjj")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpej5"]
+atlas = ExtResource("4_a2vjj")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cvp7"]
+atlas = ExtResource("4_a2vjj")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbqt7"]
+atlas = ExtResource("4_a2vjj")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5prdg"]
+atlas = ExtResource("4_a2vjj")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dop51"]
+atlas = ExtResource("4_a2vjj")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poelr"]
+atlas = ExtResource("4_a2vjj")
+region = Rect2(56, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62kmv"]
+atlas = ExtResource("4_a2vjj")
+region = Rect2(64, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7xnd3"]
 atlas = ExtResource("2_qgiwg")
@@ -215,6 +252,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_tst77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7suxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpej5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cvp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbqt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5prdg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dop51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poelr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62kmv")
+}],
+"loop": false,
+"name": &"playerBulletImpact",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_7xnd3")
 }, {
 "duration": 1.0,
@@ -272,7 +341,7 @@ script = ExtResource("1_m6akv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_8utjn")
-animation = &"enemyBigBulletMoving"
+animation = &"playerBulletImpact"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
