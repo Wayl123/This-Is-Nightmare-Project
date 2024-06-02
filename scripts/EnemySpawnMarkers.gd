@@ -1,6 +1,6 @@
 extends Node2D
 
-signal crystalsDestroyed
+signal crystals_destroyed
 
 @onready var enemySpawnLeft1 = %EnemySpawnLeft1
 @onready var enemySpawnLeft2 = %EnemySpawnLeft2
@@ -33,13 +33,13 @@ func _ready():
 	crystalSpawnList = [crystalSpawn1, crystalSpawn2, crystalSpawn3, crystalSpawn4]
 
 func _spawn_enemy():
-		var pickSpawn = spawnList.duplicate()
+	var pickSpawn = spawnList.duplicate()
+	
+	pickSpawn.shuffle()
+	pickSpawn.resize(spawnAmount)
 		
-		pickSpawn.shuffle()
-		pickSpawn.resize(spawnAmount)
-			
-		for spawn in pickSpawn:
-			spawn.play_animation("spawning")
+	for spawn in pickSpawn:
+		spawn.play_animation("spawning")
 
 func _spawn_animation_finished(spawnPosition : Vector2):
 	var enemy = ENEMY.instantiate()
@@ -65,6 +65,5 @@ func spawn_boss_crystal():
 		get_node("/root/BossStage").add_child(bossCrystal)
 		
 func _all_crystal_destroyed():
-	print_debug(get_tree().get_nodes_in_group("BossCrystals").size())
 	if get_tree().get_nodes_in_group("BossCrystals").size() <= 0:
-		crystalsDestroyed.emit()
+		crystals_destroyed.emit()

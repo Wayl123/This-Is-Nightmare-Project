@@ -48,10 +48,7 @@ func _physics_process(delta : float):
 		
 	if not Input.is_action_pressed("Shoot") and not Input.is_action_pressed("Stop"):
 		animation.play(idleAnimation)
-		if abs(facingAngle - 0) < 0.000001:
-			animation.flip_h = false
-		elif abs(facingAngle - PI) < 0.000001:
-			animation.flip_h = true
+		
 	
 	move_and_slide()
 	
@@ -60,19 +57,22 @@ func _process(delta : float):
 		var vector = Input.get_vector("Left", "Right", "Up", "Down")
 		facingAngle = round(vector.angle() / (PI / 2.0)) * (PI / 2.0)
 		gun.rotation = facingAngle
+		
+	if abs(facingAngle - 0) < 0.000001:
+		animation.flip_h = false
+	elif abs(facingAngle - PI) < 0.000001:
+		animation.flip_h = true
 	
-	if (Input.is_action_pressed("Shoot") or Input.is_action_pressed("Stop")) and gunDelay.is_stopped():
-		if abs(facingAngle - 0) < 0.000001:
-			animation.flip_h = false
-			animation.play(shootSideAnimation)
-		elif abs(facingAngle - PI) < 0.000001:
-			animation.flip_h = true
+	if (Input.is_action_pressed("Shoot") or Input.is_action_pressed("Stop")):
+		if abs(facingAngle - 0) < 0.000001 or abs(facingAngle - PI) < 0.000001:
 			animation.play(shootSideAnimation)
 		elif abs(facingAngle - (PI / 2.0)) < 0.000001:
 			animation.play(shootDownAnimation)
 		elif abs(facingAngle + (PI / 2.0)) < 0.000001:
 			animation.play(shootUpAnimation)
-		gun.shoot()
+			
+		if gunDelay.is_stopped():
+			gun.shoot()
 		
 func _stop_drop():
 	set_collision_mask_value(7, true)
