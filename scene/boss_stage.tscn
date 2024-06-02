@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://dx84oplhxfuqq"]
 
 [ext_resource type="Script" path="res://scripts/BossStage.gd" id="1_ndaqd"]
-[ext_resource type="PackedScene" path="res://Tilemap/space_tile_map.tscn" id="1_qo3u0"]
+[ext_resource type="PackedScene" uid="uid://3xdia5evwk2k" path="res://Tilemap/space_tile_map.tscn" id="1_qo3u0"]
 [ext_resource type="PackedScene" uid="uid://qhe00d1dk7d3" path="res://scene/player.tscn" id="2_mj0qv"]
 [ext_resource type="PackedScene" uid="uid://dlmfps6s4iwg3" path="res://scene/boss.tscn" id="3_qvhj0"]
-[ext_resource type="PackedScene" uid="uid://c0u5y5geyylo5" path="res://scene/enemy_spawn_markers.tscn" id="4_ctuye"]
-[ext_resource type="PackedScene" uid="uid://cotpr6lp4d1fl" path="res://scene/bullet_spawn_markers.tscn" id="4_cxest"]
+[ext_resource type="PackedScene" path="res://scene/enemy_spawn_markers.tscn" id="4_ctuye"]
+[ext_resource type="PackedScene" path="res://scene/bullet_spawn_markers.tscn" id="4_cxest"]
 [ext_resource type="Texture2D" uid="uid://dhqb35d7yeeqt" path="res://image/health bar.png" id="7_miksr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6twv0"]
