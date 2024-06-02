@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal gameOver
+
 @onready var animation = %AnimatedSprite2D
 @onready var collision = %CollisionShape2D
 @onready var dropTimer = %DropThroughTimer
@@ -8,6 +10,7 @@ extends CharacterBody2D
 @onready var invulnTimer = %HitInvulnerabilityTimer
 @onready var gun = %Gun
 @onready var gunDelay = %GunDelayTimer
+@onready var lastStandIndicator = %LastStandIndicator
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -500.0
@@ -83,7 +86,7 @@ func _got_hit(area : Area2D):
 	else:
 		if invulnTimer.is_stopped():
 			if lastStandMode:
-				print_debug("dead")
+				gameOver.emit()
 				#queue_free()
 			else:
 				_last_stand(true)
@@ -93,8 +96,13 @@ func _last_stand(isLS : bool):
 	lastStandMode = isLS
 	if isLS:
 		lastStandTimer.start()
+		lastStandIndicator.visible = true
+		lastStandIndicator.play("LastStand")
 	else:
 		lastStandTimer.stop()
+		lastStandIndicator.visible = false
+		lastStandIndicator.stop()
+		lastStandIndicator.frame = 0
 	idleAnimation = "IdleLS" if isLS else "Idle"
 	shootSideAnimation = "ShootSideLS" if isLS else "ShootSide"
 	shootDownAnimation = "ShootDownLS" if isLS else "ShootDown"
@@ -105,4 +113,5 @@ func enemy_killed():
 		_last_stand(false)
 
 func _last_stand_expire():
-	print_debug("also dead")
+	gameOver.emit()
+	#queue_free()

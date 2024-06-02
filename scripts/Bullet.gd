@@ -43,6 +43,10 @@ func _set_bullet_property():
 
 func _hit_object(area : Area2D):
 	if is_in_group("PlayerBullets"):
+		bulletCollision.set_deferred("disabled", true)
+		speed = 0
+		bulletSprite.play("playerBulletImpact")
+		await bulletSprite.animation_finished
 		queue_free()
 	
 func _bullet_expire():
