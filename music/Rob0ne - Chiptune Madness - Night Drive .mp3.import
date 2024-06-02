@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://blbomdibkslwk"
+path="res://.godot/imported/Rob0ne - Chiptune Madness - Night Drive .mp3-d6e7a79988f66e8c8d332021efd183fd.mp3str"
+
+[deps]
+
+source_file="res://music/Rob0ne - Chiptune Madness - Night Drive .mp3"
+dest_files=["res://.godot/imported/Rob0ne - Chiptune Madness - Night Drive .mp3-d6e7a79988f66e8c8d332021efd183fd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
