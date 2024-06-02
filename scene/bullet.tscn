@@ -1,8 +1,49 @@
-[gd_scene load_steps=30 format=3 uid="uid://cs44vt1dh2yss"]
+[gd_scene load_steps=41 format=3 uid="uid://cs44vt1dh2yss"]
 
 [ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_m6akv"]
+[ext_resource type="Texture2D" uid="uid://ib6m3asq0kwu" path="res://image/bigbullet.png" id="2_oyhbv"]
 [ext_resource type="Texture2D" uid="uid://mx1vgy36qv0i" path="res://image/boss_bullet.png" id="2_pf05a"]
 [ext_resource type="Texture2D" uid="uid://bshmu7rssrao7" path="res://image/player_bullet.png" id="2_qgiwg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45xhu"]
+atlas = ExtResource("2_oyhbv")
+region = Rect2(0, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgapo"]
+atlas = ExtResource("2_oyhbv")
+region = Rect2(37, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tpuk"]
+atlas = ExtResource("2_oyhbv")
+region = Rect2(74, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4ypl"]
+atlas = ExtResource("2_oyhbv")
+region = Rect2(111, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6g8p"]
+atlas = ExtResource("2_oyhbv")
+region = Rect2(148, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmv37"]
+atlas = ExtResource("2_oyhbv")
+region = Rect2(185, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg8qj"]
+atlas = ExtResource("2_oyhbv")
+region = Rect2(222, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vf0g7"]
+atlas = ExtResource("2_oyhbv")
+region = Rect2(259, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r16nq"]
+atlas = ExtResource("2_oyhbv")
+region = Rect2(296, 0, 37, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o4a6"]
+atlas = ExtResource("2_oyhbv")
+region = Rect2(333, 0, 37, 44)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rimu2"]
 atlas = ExtResource("2_pf05a")
@@ -104,6 +145,41 @@ region = Rect2(130, 0, 10, 5)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_45xhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgapo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tpuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4ypl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6g8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmv37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pg8qj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vf0g7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r16nq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o4a6")
+}],
+"loop": true,
+"name": &"enemyBigBulletMoving",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rimu2")
 }, {
 "duration": 1.0,
@@ -196,11 +272,19 @@ script = ExtResource("1_m6akv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_8utjn")
-animation = &"enemyBulletMoving"
+animation = &"enemyBigBulletMoving"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("CircleShape2D_5u8qp")
 debug_color = Color(1, 0, 0.701961, 0.419608)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4, 0)
+scale = Vector2(1, -1.73)
+polygon = PackedVector2Array(-4, 10.9827, -1, 10.4046, 1, 9.82659, 3, 9.24856, 4, 8.67052, 6, 8.09249, 7, 6.93642, 8, 6.35838, 9, 5.20231, 10, 4.04624, 11, 2.31214, 12, 0, 11, -2.31214, 10, -4.04624, 9, -5.20231, 8, -6.35838, 7, -6.93642, 6, -8.09249, 4, -8.67052, 3, -9.24856, 1, -9.82659, -1, -10.4046, -4, -10.9827, -3, -10.4046, -2, -9.82659, -1, -9.24856, 0, -8.67052, 1, -8.09249, 2, -6.93642, 3, -6.35838, 4, -5.20231, 5, -2.89017, 6, 0, 5, 2.89017, 4, 5.20231, 3, 6.35838, 2, 6.93642, 1, 8.09249, 0, 8.67052, -1, 9.24856, -2, 9.82659, -3, 10.4046)
+disabled = true
 
 [node name="BulletExpirationTimer" type="Timer" parent="."]
 unique_name_in_owner = true

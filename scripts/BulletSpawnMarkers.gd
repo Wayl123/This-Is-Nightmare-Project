@@ -17,7 +17,6 @@ extends Node2D
 @onready var boss = get_tree().get_first_node_in_group("Boss")
 
 var BULLET = preload("res://scene/bullet.tscn")
-var bigBULLET = preload("res://scene/bigbullet.tscn")
 
 var spawnList : Array
 var bigSpawnAmount = 1
@@ -34,8 +33,8 @@ func _spawn_big_bullet():
 	pickSpawn.resize(bigSpawnAmount)
 	
 	for spawn in pickSpawn:
-		var bullet = bigBULLET.instantiate()
-		bullet.add_to_group("bigBullets")
+		var bullet = BULLET.instantiate()
+		bullet.add_to_group("EnemyBigBullets")
 		bullet.transform = spawn.transform
 		bullet.scale = Vector2(1, 1)
 		bullet.set("speed", 50.0)
