@@ -67,7 +67,6 @@ func _got_hit(area : Area2D):
 	else:
 		phaseChange = 1
 		
-	phaseChange = 4
 	
 	#only run phase change once
 	if phase != phaseChange:
