@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://cotpr6lp4d1fl"]
+
+[ext_resource type="Script" path="res://scripts/BulletSpawnMarkers.gd" id="1_3thu7"]
+
+[node name="BulletSpawnMarkers" type="Node2D" groups=["BulletSpawn"]]
+script = ExtResource("1_3thu7")
+
+[node name="BulletSpawnLeft1" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-400, -120)
+
+[node name="BulletSpawnLeft2" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-400, -56)
+
+[node name="BulletSpawnLeft3" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-400, 8)
+
+[node name="BulletSpawnLeft4" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-400, 72)
+
+[node name="BulletSpawnLeft5" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-400, 136)
+
+[node name="BulletSpawnRight1" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(400, -120)
+rotation = -3.14159
+
+[node name="BulletSpawnRight2" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(400, -56)
+rotation = -3.14159
+
+[node name="BulletSpawnRight3" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(400, 8)
+rotation = -3.14159
+
+[node name="BulletSpawnRight4" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(400, 72)
+rotation = -3.14159
+
+[node name="BulletSpawnRight5" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(400, 136)
+rotation = -3.14159
+
+[node name="BigBulletTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+autostart = true
+
+[node name="BulletSpreadTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+
+[node name="BulletSpreadGapTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5

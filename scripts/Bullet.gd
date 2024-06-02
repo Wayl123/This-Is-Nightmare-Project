@@ -1,20 +1,44 @@
 extends Area2D
 
+@export var speed : float = 300.0:
+	set(value):
+		speed = value
+@export var expireTime : float = 5.0:
+	set(value):
+		expireTime = value
+
 @onready var timer = %BulletExpirationTimer
 @onready var bulletSprite = %AnimatedSprite2D
-var speed = 300
+
+var damage = 1
 
 func _ready():
-	bulletSprite.play("moving")
 	connect("area_entered", Callable(self, "_hit_object"))
 
+	_set_bullet_property()
+	timer.wait_time = expireTime
+	timer.start()
 	timer.timeout.connect(_bullet_expire)
 
 func _physics_process(delta : float):
-	position += transform.x * speed * delta
+	position += (transform.x / scale) * speed * delta
+
+func _set_bullet_property():
+	if is_in_group("PlayerBullets"):
+		bulletSprite.play("playerBulletMoving")
+		set_collision_layer_value(3, true)
+		set_collision_mask_value(4, true)
+	elif is_in_group("EnemyBullets"):
+		bulletSprite.play("enemyBulletMoving")
+		set_collision_layer_value(5, true)
+		set_collision_mask_value(2, true)
 
 func _hit_object(area : Area2D):
-	queue_free()
+	if is_in_group("PlayerBullets"):
+		queue_free()
 	
 func _bullet_expire():
 	queue_free()
+	
+func get_damage():
+	return damage
