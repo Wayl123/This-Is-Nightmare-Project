@@ -34,9 +34,9 @@ func _spawn_big_bullet():
 	
 	for spawn in pickSpawn:
 		var bullet = BULLET.instantiate()
-		bullet.add_to_group("EnemyBullets")
+		bullet.add_to_group("EnemyBigBullets")
 		bullet.transform = spawn.transform
-		bullet.scale = Vector2(4, 4)
+		bullet.scale = Vector2(1, 1)
 		bullet.set("speed", 50.0)
 		bullet.set("expireTime", 15.0)
 		get_node("/root/BossStage").add_child(bullet)
