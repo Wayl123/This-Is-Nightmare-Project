@@ -7,47 +7,47 @@ script = ExtResource("1_3thu7")
 
 [node name="BulletSpawnLeft1" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-400, -140)
+position = Vector2(-400, -120)
 
 [node name="BulletSpawnLeft2" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-400, -70)
+position = Vector2(-400, -56)
 
 [node name="BulletSpawnLeft3" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-400, 0)
+position = Vector2(-400, 8)
 
 [node name="BulletSpawnLeft4" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-400, 70)
+position = Vector2(-400, 72)
 
 [node name="BulletSpawnLeft5" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-400, 140)
+position = Vector2(-400, 136)
 
 [node name="BulletSpawnRight1" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(400, -140)
+position = Vector2(400, -120)
 rotation = -3.14159
 
 [node name="BulletSpawnRight2" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(400, -70)
+position = Vector2(400, -56)
 rotation = -3.14159
 
 [node name="BulletSpawnRight3" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(400, 0)
+position = Vector2(400, 8)
 rotation = -3.14159
 
 [node name="BulletSpawnRight4" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(400, 70)
+position = Vector2(400, 72)
 rotation = -3.14159
 
 [node name="BulletSpawnRight5" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(400, 140)
+position = Vector2(400, 136)
 rotation = -3.14159
 
 [node name="BigBulletTimer" type="Timer" parent="."]
