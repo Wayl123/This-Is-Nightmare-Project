@@ -73,3 +73,4 @@ func toggle_bullet_spread_timer(start : bool = false, bulletScale : float = 1.0,
 		bulletSpreadTimer.start()
 	else:
 		bulletSpreadTimer.stop()
+		bulletSpreadTimer.disconnect("timeout", Callable(self, "_spawn_spread_bullet"))
