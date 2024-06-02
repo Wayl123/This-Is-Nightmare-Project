@@ -15,7 +15,7 @@ var ENEMY = preload("res://scene/enemy.tscn")
 const MAX_SPEED = 200.0
 const MIN_SPEED = 50.0
 const ACCEL = 10.0
-const TOTAL_HEALTH = 200
+const TOTAL_HEALTH = 100
 
 var destPosition : Vector2
 
@@ -58,14 +58,14 @@ func _got_hit(area : Area2D):
 func _phase_change(phase : int):
 	match phase:
 		2:
-			bulletSpawn.toggle_bullet_spread_timer(true, 0.5, 4, 8, 100.0, 5.0)
+			bulletSpawn.toggle_bullet_spread_timer(true, 1, 4, 8, 100.0, 5.0)
 			bulletSpawn.change_big_bullet_spawn_amount(2)
 		3:
 			bulletSpawn.toggle_bullet_spread_timer(false)
 			enemySpawn.change_spawn_timer(2.0)
 			enemySpawn.change_spawn_amount(3)
 		4:
-			bulletSpawn.toggle_bullet_spread_timer(true, 0.5, 4, 16, 100.0, 3.0)
+			bulletSpawn.toggle_bullet_spread_timer(true, 1, 4, 16, 100.0, 3.0)
 			bulletSpawn.change_big_bullet_spawn_timer(3.0)
 			enemySpawn.change_spawn_timer(1.5)
 			enemySpawn.call_deferred("spawn_boss_crystal")
@@ -83,7 +83,7 @@ func _set_vuln():
 func _random_move(delta : float):
 	if global_position == destPosition and moveTimer.is_stopped():
 		var rng = RandomNumberGenerator.new()
-		moveTimer.wait_time = rng.randf_range(0.1, 5.0)
+		moveTimer.wait_time = rng.randf_range(1, 7.5)
 		moveTimer.start()
 		await moveTimer.timeout
 		

@@ -48,6 +48,10 @@ func _physics_process(delta : float):
 		
 	if not Input.is_action_pressed("Shoot") and not Input.is_action_pressed("Stop"):
 		animation.play(idleAnimation)
+		if abs(facingAngle - 0) < 0.000001:
+			animation.flip_h = false
+		elif abs(facingAngle - PI) < 0.000001:
+			animation.flip_h = true
 	
 	move_and_slide()
 	
