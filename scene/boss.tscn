@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://cj7khw2p3i16w" path="res://image/boss_monster.png" id="2_m53m1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s7k5g"]
-radius = 4.0
+radius = 1.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t75mh"]
-size = Vector2(51, 12.5)
+[sub_resource type="CircleShape2D" id="CircleShape2D_que60"]
+radius = 24.0
 
-[node name="Boss" type="CharacterBody2D"]
+[node name="Boss" type="CharacterBody2D" groups=["Boss"]]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_526fu")
@@ -22,9 +22,26 @@ shape = SubResource("CircleShape2D_s7k5g")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 4
-collision_mask = 2
+collision_layer = 8
+collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -18)
-shape = SubResource("RectangleShape2D_t75mh")
+[node name="HurtboxCollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_que60")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="MoveMarkerLeft" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-200, -130)
+
+[node name="MoveMarkerMiddle" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -130)
+
+[node name="MoveMarkerRight" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(200, -130)
+
+[node name="MoveTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

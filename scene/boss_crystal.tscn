@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv7mt30fieg4k"]
+
+[ext_resource type="Script" path="res://scripts/BossCrystal.gd" id="1_xpc5l"]
+[ext_resource type="Texture2D" uid="uid://dyf1gajerpmjf" path="res://image/boss_crystal.png" id="2_n5etn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v0kad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n5etn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_urrc0"]
+radius = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2nbj"]
+radius = 8.0
+
+[node name="BossCrystal" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_xpc5l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v0kad")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_urrc0")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_t2nbj")
+debug_color = Color(0, 0.6, 0, 0.419608)

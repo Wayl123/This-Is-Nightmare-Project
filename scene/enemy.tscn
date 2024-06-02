@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://chdrlri2m63br"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_kwrd2"]
+[ext_resource type="Texture2D" uid="uid://cdbsohu3o3fi6" path="res://image/ads.png" id="2_p138y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0l1r4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p138y")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gkif4"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ev061"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yj2bq"]
+radius = 8.0
+height = 26.0
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 0
+collision_mask = 65
+script = ExtResource("1_kwrd2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0l1r4")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_gkif4")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 36
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_ev061")
+debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_yj2bq")
+debug_color = Color(1, 0, 0.701961, 0.419608)

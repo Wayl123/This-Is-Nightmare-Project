@@ -1,7 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://qhe00d1dk7d3"]
+[gd_scene load_steps=15 format=3 uid="uid://qhe00d1dk7d3"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_1jxqe"]
 [ext_resource type="Texture2D" uid="uid://dfldir2xtkh7l" path="res://image/player.png" id="2_jihsy"]
+[ext_resource type="Texture2D" uid="uid://chrxed7kumd0f" path="res://image/last_stand_player.png" id="3_rmn6a"]
+[ext_resource type="Texture2D" uid="uid://cxmaj4v56cnbt" path="res://image/shooting_down.png" id="4_avuki"]
+[ext_resource type="Script" path="res://scripts/PlayerHurtbox.gd" id="4_t8vqb"]
+[ext_resource type="Texture2D" uid="uid://cvu80oj8bs0bc" path="res://image/last_stand_shooting_down.png" id="5_qhwpb"]
+[ext_resource type="Script" path="res://scripts/Gun.gd" id="5_xoien"]
+[ext_resource type="Texture2D" uid="uid://cmj1lv7mod5ei" path="res://image/player_right_left.png" id="6_top04"]
+[ext_resource type="Texture2D" uid="uid://fyk648irlxt5" path="res://image/last_stand_right_left.png" id="7_0sdpr"]
+[ext_resource type="Texture2D" uid="uid://cyb058b0e16u" path="res://image/shooting_up.png" id="8_t64kj"]
+[ext_resource type="Texture2D" uid="uid://cvfr5ealun3uk" path="res://image/last_stand_shooting_up.png" id="9_c1p7x"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_atmel"]
 animations = [{
@@ -10,7 +19,63 @@ animations = [{
 "texture": ExtResource("2_jihsy")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rmn6a")
+}],
+"loop": true,
+"name": &"IdleLS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_avuki")
+}],
+"loop": true,
+"name": &"ShootDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qhwpb")
+}],
+"loop": true,
+"name": &"ShootDownLS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_top04")
+}],
+"loop": true,
+"name": &"ShootSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_0sdpr")
+}],
+"loop": true,
+"name": &"ShootSideLS",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_t64kj")
+}],
+"loop": true,
+"name": &"ShootUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_c1p7x")
+}],
+"loop": true,
+"name": &"ShootUpLS",
 "speed": 5.0
 }]
 
@@ -19,33 +84,61 @@ radius = 6.0
 height = 28.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ta2u3"]
-radius = 6.0
+radius = 7.0
 height = 28.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 0
+collision_mask = 65
 script = ExtResource("1_1jxqe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_atmel")
-animation = &"idle"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("CapsuleShape2D_sf0vn")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="DropThroughTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="LastStandTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 48
+script = ExtResource("4_t8vqb")
+
+[node name="HurtboxCollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+unique_name_in_owner = true
 shape = SubResource("CapsuleShape2D_ta2u3")
 debug_color = Color(0, 0.6, 0, 0.419608)
 
+[node name="HitInvulnerabilityTimer" type="Timer" parent="Hurtbox"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="BlinkTimer" type="Timer" parent="Hurtbox"]
+unique_name_in_owner = true
+wait_time = 0.05
+
 [node name="Gun" type="Node2D" parent="."]
 unique_name_in_owner = true
+script = ExtResource("5_xoien")
 
 [node name="GunMuzzle" type="Marker2D" parent="Gun"]
 unique_name_in_owner = true
 position = Vector2(6, 0)
 
-[node name="GunDelay" type="Timer" parent="Gun"]
+[node name="GunDelayTimer" type="Timer" parent="Gun"]
 unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
