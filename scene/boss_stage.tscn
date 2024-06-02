@@ -30,6 +30,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("2_mj0qv")]
+unique_name_in_owner = true
 
 [node name="Boss" parent="." instance=ExtResource("3_qvhj0")]
 unique_name_in_owner = true

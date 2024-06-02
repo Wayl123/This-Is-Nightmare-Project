@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal gameOver
+
 @onready var animation = %AnimatedSprite2D
 @onready var collision = %CollisionShape2D
 @onready var dropTimer = %DropThroughTimer
@@ -84,7 +86,7 @@ func _got_hit(area : Area2D):
 	else:
 		if invulnTimer.is_stopped():
 			if lastStandMode:
-				print_debug("dead")
+				gameOver.emit()
 				#queue_free()
 			else:
 				_last_stand(true)
@@ -111,4 +113,5 @@ func enemy_killed():
 		_last_stand(false)
 
 func _last_stand_expire():
-	print_debug("also dead")
+	gameOver.emit()
+	#queue_free()

@@ -6,20 +6,23 @@ extends CharacterBody2D
 		
 @onready var hurtbox = %Hurtbox
 
-const SPEED = 50.0
+var speed = 50.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
+	
+	var rng = RandomNumberGenerator.new()
+	speed = speed + rng.randf_range(-25.0, 75.0)
 
 func _physics_process(delta : float):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	velocity.x = direction * SPEED
+	velocity.x = direction * speed
 	
-	if is_on_wall():
+	if is_on_wall() and is_on_floor():
 		_despawn()
 
 	move_and_slide()
