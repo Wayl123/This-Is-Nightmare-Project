@@ -63,14 +63,16 @@ func _process(delta : float):
 	elif abs(facingAngle - PI) < 0.000001:
 		animation.flip_h = true
 	
-	if (Input.is_action_pressed("Shoot") or Input.is_action_pressed("Stop")) and gunDelay.is_stopped():
+	if (Input.is_action_pressed("Shoot") or Input.is_action_pressed("Stop")):
 		if abs(facingAngle - 0) < 0.000001 or abs(facingAngle - PI) < 0.000001:
 			animation.play(shootSideAnimation)
 		elif abs(facingAngle - (PI / 2.0)) < 0.000001:
 			animation.play(shootDownAnimation)
 		elif abs(facingAngle + (PI / 2.0)) < 0.000001:
 			animation.play(shootUpAnimation)
-		gun.shoot()
+			
+		if gunDelay.is_stopped():
+			gun.shoot()
 		
 func _stop_drop():
 	set_collision_mask_value(7, true)
