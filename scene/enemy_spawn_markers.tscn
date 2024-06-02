@@ -8,39 +8,39 @@ script = ExtResource("1_5bhma")
 
 [node name="EnemySpawnLeft1" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(-250, -140)
+position = Vector2(-250, -111)
 
 [node name="EnemySpawnLeft2" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(-250, -70)
+position = Vector2(-250, -47)
 
 [node name="EnemySpawnLeft3" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(-250, 0)
+position = Vector2(-250, 17)
 
 [node name="EnemySpawnLeft4" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(-250, 70)
+position = Vector2(-250, 81)
 
 [node name="EnemySpawnRight1" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(250, -140)
+position = Vector2(250, -111)
 
 [node name="EnemySpawnRight2" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(250, -70)
+position = Vector2(250, -47)
 
 [node name="EnemySpawnRight3" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(250, 0)
+position = Vector2(250, 17)
 
 [node name="EnemySpawnRight4" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(250, 70)
+position = Vector2(250, 81)
 
 [node name="CrystalSpawn1" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-200, -140)
+position = Vector2(-200, -120)
 
 [node name="CrystalSpawn2" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -48,7 +48,7 @@ position = Vector2(-200, 140)
 
 [node name="CrystalSpawn3" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(200, -140)
+position = Vector2(200, -120)
 
 [node name="CrystalSpawn4" type="Marker2D" parent="."]
 unique_name_in_owner = true

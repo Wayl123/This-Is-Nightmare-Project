@@ -32,15 +32,15 @@ debug_color = Color(0, 0.6, 0, 0.419608)
 
 [node name="MoveMarkerLeft" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-200, -140)
+position = Vector2(-200, -130)
 
 [node name="MoveMarkerMiddle" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -140)
+position = Vector2(0, -130)
 
 [node name="MoveMarkerRight" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(200, -140)
+position = Vector2(200, -130)
 
 [node name="MoveTimer" type="Timer" parent="."]
 unique_name_in_owner = true
