@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var moveMarkerMiddle = %MoveMarkerMiddle
 @onready var moveMarkerRight = %MoveMarkerRight
 @onready var moveTimer = %MoveTimer
+@onready var bobTimer = %BobTimer
 
 @onready var bulletSpawn = get_tree().get_first_node_in_group("BulletSpawn")
 @onready var enemySpawn = get_tree().get_first_node_in_group("EnemySpawn")
@@ -23,18 +24,30 @@ var phase = 1
 var speed = 0
 var health = TOTAL_HEALTH
 
+var centerPosition : Vector2
+var freq : float
+
 func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
-	enemySpawn.connect("crystalsDestroyed", Callable(self, "_set_vuln"))
+	enemySpawn.connect("crystals_destroyed", Callable(self, "_set_vuln"))
 	
 	destPosition = moveMarkerMiddle.position
+	
+	centerPosition = position
+	var rng = RandomNumberGenerator.new()
+	freq = rng.randf_range(0.5, 2)
+	bobTimer.wait_time = 2 * PI / freq
+	bobTimer.start()
 	
 func _physics_process(delta : float):
 	call_deferred("_random_move", delta)
 	
-	if global_position != destPosition:
+	if not abs(global_position.x - destPosition.x) < 0.001:
 		speed = move_toward(speed, (MAX_SPEED if global_position.distance_to(destPosition) > 20 else MIN_SPEED), ACCEL)
 		global_position = global_position.move_toward(destPosition, delta * speed)
+		
+func _process(delta : float):
+	position.y = centerPosition.y + sin(bobTimer.time_left * freq) * 4
 
 func _got_hit(area : Area2D):
 	health -= area.get_damage()
@@ -49,6 +62,8 @@ func _got_hit(area : Area2D):
 		phaseChange = 2
 	else:
 		phaseChange = 1
+		
+	phaseChange = 4
 	
 	#only run phase change once
 	if phase != phaseChange:
@@ -81,7 +96,7 @@ func _set_vuln():
 	hurtboxCollision.set_deferred("disabled", false)
 	
 func _random_move(delta : float):
-	if global_position == destPosition and moveTimer.is_stopped():
+	if abs(global_position.x - destPosition.x) < 0.001 and moveTimer.is_stopped():
 		var rng = RandomNumberGenerator.new()
 		moveTimer.wait_time = rng.randf_range(1, 7.5)
 		moveTimer.start()

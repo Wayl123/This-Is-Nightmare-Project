@@ -27,13 +27,13 @@ func _ready():
 	spawnList = [bulletSpawnLeft1, bulletSpawnLeft2, bulletSpawnLeft3, bulletSpawnLeft4, bulletSpawnLeft5, bulletSpawnRight1, bulletSpawnRight2, bulletSpawnRight3, bulletSpawnRight4, bulletSpawnRight5]
 
 func _spawn_big_bullet():
-	var bullet = BULLET.instantiate()
 	var pickSpawn = spawnList.duplicate()
 	
 	pickSpawn.shuffle()
 	pickSpawn.resize(bigSpawnAmount)
 	
 	for spawn in pickSpawn:
+		var bullet = BULLET.instantiate()
 		bullet.add_to_group("EnemyBullets")
 		bullet.transform = spawn.transform
 		bullet.scale = Vector2(4, 4)

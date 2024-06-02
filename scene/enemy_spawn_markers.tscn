@@ -1,46 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0u5y5geyylo5"]
+[gd_scene load_steps=3 format=3 uid="uid://bgmwwij4ehamq"]
 
 [ext_resource type="Script" path="res://scripts/EnemySpawnMarkers.gd" id="1_5bhma"]
-[ext_resource type="PackedScene" uid="uid://di05lvd72jwyb" path="res://scene/enemy_spawn.tscn" id="2_rdql6"]
+[ext_resource type="PackedScene" uid="uid://d3otmi6pm5yd1" path="res://scene/enemy_spawn.tscn" id="2_rdql6"]
 
 [node name="EnemySpawnMarkers" type="Node2D" groups=["EnemySpawn"]]
 script = ExtResource("1_5bhma")
 
 [node name="EnemySpawnLeft1" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(-250, -111)
+position = Vector2(-250, -140)
 
 [node name="EnemySpawnLeft2" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(-250, -47)
+position = Vector2(-250, -70)
 
 [node name="EnemySpawnLeft3" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(-250, 17)
+position = Vector2(-250, 0)
 
 [node name="EnemySpawnLeft4" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(-250, 81)
+position = Vector2(-250, 70)
 
 [node name="EnemySpawnRight1" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(250, -111)
+position = Vector2(250, -140)
 
 [node name="EnemySpawnRight2" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(250, -47)
+position = Vector2(250, -70)
 
 [node name="EnemySpawnRight3" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(250, 17)
+position = Vector2(250, 0)
 
 [node name="EnemySpawnRight4" parent="." instance=ExtResource("2_rdql6")]
 unique_name_in_owner = true
-position = Vector2(250, 81)
+position = Vector2(250, 70)
 
 [node name="CrystalSpawn1" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-200, -120)
+position = Vector2(-200, -140)
 
 [node name="CrystalSpawn2" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -48,7 +48,7 @@ position = Vector2(-200, 140)
 
 [node name="CrystalSpawn3" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(200, -120)
+position = Vector2(200, -140)
 
 [node name="CrystalSpawn4" type="Marker2D" parent="."]
 unique_name_in_owner = true
