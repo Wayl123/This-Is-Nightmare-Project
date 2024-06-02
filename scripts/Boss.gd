@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal bossHealthPercent(healthPercent : float)
+
 @onready var hurtbox = %Hurtbox
 @onready var hurtboxCollision = %HurtboxCollisionShape2D
 @onready var moveMarkerLeft = %MoveMarkerLeft
@@ -53,6 +55,8 @@ func _got_hit(area : Area2D):
 	health -= area.get_damage()
 	var healthPercent = float(health) / float(TOTAL_HEALTH)
 	var phaseChange : int
+	
+	bossHealthPercent.emit(healthPercent * 100.0)
 	
 	if healthPercent <= 0.25:
 		phaseChange = 4
