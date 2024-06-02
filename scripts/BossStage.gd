@@ -8,7 +8,7 @@ extends Node2D
 func _ready():
 	platformSwitchTimer.connect("timeout", Callable(self, "_flip_platform"))
 	boss.connect("bossHealthPercent", Callable(self, "_update_health_bar"))
-	
+
 func _flip_platform():
 	tileMap.set_layer_enabled(0, not tileMap.is_layer_enabled(0))
 	tileMap.set_layer_enabled(1, not tileMap.is_layer_enabled(1))

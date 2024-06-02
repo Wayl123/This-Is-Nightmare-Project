@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var invulnTimer = %HitInvulnerabilityTimer
 @onready var gun = %Gun
 @onready var gunDelay = %GunDelayTimer
+@onready var lastStandIndicator = %LastStandIndicator
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -500.0
@@ -93,8 +94,13 @@ func _last_stand(isLS : bool):
 	lastStandMode = isLS
 	if isLS:
 		lastStandTimer.start()
+		lastStandIndicator.visible = true
+		lastStandIndicator.play("LastStand")
 	else:
 		lastStandTimer.stop()
+		lastStandIndicator.visible = false
+		lastStandIndicator.stop()
+		lastStandIndicator.frame = 0
 	idleAnimation = "IdleLS" if isLS else "Idle"
 	shootSideAnimation = "ShootSideLS" if isLS else "ShootSide"
 	shootDownAnimation = "ShootDownLS" if isLS else "ShootDown"
