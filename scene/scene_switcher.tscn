@@ -59,4 +59,4 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-volume_db = -10.0
+volume_db = -12.0
