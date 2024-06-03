@@ -8,4 +8,4 @@ func _ready() -> void:
 	returnButton.connect("pressed", Callable(self, "_return"))
 
 func _return() -> void:
-	sceneSwitcher.switch_scene(0, 1)
+	sceneSwitcher.switch_scene(0)
