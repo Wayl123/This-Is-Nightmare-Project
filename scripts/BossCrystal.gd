@@ -6,7 +6,7 @@ signal destroyed
 @onready var bobTimer = %BobTimer
 @onready var crystalHealthBar = %CrystalHealthBar
 
-const TOTAL_HEALTH = 10
+const TOTAL_HEALTH = 5
 
 var health = TOTAL_HEALTH
 
