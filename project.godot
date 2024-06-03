@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Godot Project"
-run/main_scene="res://scene/boss_stage.tscn"
+config/name="This is Nightmare"
+run/main_scene="res://scene/scene_switcher.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [display]

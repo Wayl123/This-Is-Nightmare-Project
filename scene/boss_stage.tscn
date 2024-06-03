@@ -7,12 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://bgmwwij4ehamq" path="res://scene/enemy_spawn_markers.tscn" id="4_ctuye"]
 [ext_resource type="PackedScene" uid="uid://d14sbtfqtrwhj" path="res://scene/bullet_spawn_markers.tscn" id="4_cxest"]
 [ext_resource type="Texture2D" uid="uid://bihgqer27np3w" path="res://image/health bar boarder.png" id="7_38vtd"]
-[ext_resource type="Texture2D" uid="uid://dhqb35d7yeeqt" path="res://image/health bar.png" id="7_miksr"]
+[ext_resource type="Texture2D" uid="uid://b7c4xshorgmyq" path="res://image/health bar fill.png" id="8_rjxuv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6twv0"]
 size = Vector2(1206, 249.5)
 
-[node name="BossStage" type="Node2D"]
+[node name="BossStage" type="Node2D" groups=["BossStage"]]
 script = ExtResource("1_ndaqd")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -59,4 +59,4 @@ offset_right = 240.0
 offset_bottom = -158.0
 value = 100.0
 texture_over = ExtResource("7_38vtd")
-texture_progress = ExtResource("7_miksr")
+texture_progress = ExtResource("8_rjxuv")

@@ -10,13 +10,13 @@ var speed = 50.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func _ready():
+func _ready() -> void:
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
 	
 	var rng = RandomNumberGenerator.new()
 	speed = speed + rng.randf_range(-25.0, 75.0)
 
-func _physics_process(delta : float):
+func _physics_process(delta : float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
@@ -27,10 +27,10 @@ func _physics_process(delta : float):
 
 	move_and_slide()
 
-func _got_hit(area : Area2D):
-	if area.is_in_group("PlayerBullets"):
+func _got_hit(area : Area2D) -> void:
+	if area.is_in_group("PlayerBullets") and get_tree().get_first_node_in_group("Player"):
 		get_tree().get_first_node_in_group("Player").enemy_killed()
 	queue_free()
 
-func _despawn():
+func _despawn() -> void:
 	queue_free()

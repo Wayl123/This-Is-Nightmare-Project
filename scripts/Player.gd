@@ -27,12 +27,12 @@ var shootUpAnimation = "ShootUp"
 
 var facingAngle = 0.0
 
-func _ready():
+func _ready() -> void:
 	dropTimer.connect("timeout", Callable(self, "_stop_drop"))
 	lastStandTimer.connect("timeout", Callable(self, "_last_stand_expire"))
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
 
-func _physics_process(delta : float):
+func _physics_process(delta : float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
@@ -55,7 +55,7 @@ func _physics_process(delta : float):
 	
 	move_and_slide()
 	
-func _process(delta : float):
+func _process(delta : float) -> void:
 	if Input.is_action_pressed("Left") or Input.is_action_pressed("Right") or Input.is_action_pressed("Up") or Input.is_action_pressed("Down"):
 		var vector = Input.get_vector("Left", "Right", "Up", "Down")
 		facingAngle = round(vector.angle() / (PI / 2.0)) * (PI / 2.0)
@@ -77,22 +77,21 @@ func _process(delta : float):
 		if gunDelay.is_stopped():
 			gun.shoot()
 		
-func _stop_drop():
+func _stop_drop() -> void:
 	set_collision_mask_value(7, true)
 		
-func _got_hit(area : Area2D):
+func _got_hit(area : Area2D) -> void:
 	if area.is_in_group("Killbox"):
 		queue_free()
 	else:
 		if invulnTimer.is_stopped():
 			if lastStandMode:
 				gameOver.emit()
-				#queue_free()
 			else:
 				_last_stand(true)
 				hurtbox.start_invuln()
 		
-func _last_stand(isLS : bool):
+func _last_stand(isLS : bool) -> void:
 	lastStandMode = isLS
 	if isLS:
 		lastStandTimer.start()
@@ -108,10 +107,9 @@ func _last_stand(isLS : bool):
 	shootDownAnimation = "ShootDownLS" if isLS else "ShootDown"
 	shootUpAnimation = "ShootUpLS" if isLS else "ShootUp"
 	
-func enemy_killed():
+func enemy_killed() -> void:
 	if lastStandMode:
 		_last_stand(false)
 
-func _last_stand_expire():
+func _last_stand_expire() -> void:
 	gameOver.emit()
-	#queue_free()
