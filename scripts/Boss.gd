@@ -19,7 +19,7 @@ var ENEMY = preload("res://scene/enemy.tscn")
 const MAX_SPEED = 200.0
 const MIN_SPEED = 50.0
 const ACCEL = 10.0
-const TOTAL_HEALTH = 100
+const TOTAL_HEALTH = 4
 
 var destPosition : Vector2
 
@@ -87,8 +87,8 @@ func _phase_change(phase : int) -> void:
 			enemySpawn.change_spawn_timer(2.0)
 			enemySpawn.change_spawn_amount(3)
 		4:
-			bulletSpawn.toggle_bullet_spread_timer(true, 1, 4, 16, 100.0, 3.0)
-			bulletSpawn.change_big_bullet_spawn_timer(3.0)
+			bulletSpawn.toggle_bullet_spread_timer(true, 1, 4, 12, 100.0, 3.0)
+			bulletSpawn.change_big_bullet_spawn_timer(4.0)
 			enemySpawn.change_spawn_timer(1.5)
 			enemySpawn.call_deferred("spawn_boss_crystal")
 			hurtboxCollision.set_deferred("disabled", true)
