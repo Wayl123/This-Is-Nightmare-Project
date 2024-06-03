@@ -52,5 +52,5 @@ func _hit_object(area : Area2D) -> void:
 func _bullet_expire() -> void:
 	queue_free()
 	
-func get_damage() -> float:
+func get_damage() -> int:
 	return damage

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal bossHealthPercent(healthPercent : float)
+signal bossDied
 
 @onready var hurtbox = %Hurtbox
 @onready var hurtboxCollision = %HurtboxCollisionShape2D
@@ -67,11 +68,14 @@ func _got_hit(area : Area2D) -> void:
 	else:
 		phaseChange = 1
 		
-	
 	#only run phase change once
 	if phase != phaseChange:
 		phase = phaseChange
 		_phase_change(phaseChange)
+		
+	if health == 0:
+		bossDied.emit()
+		queue_free()
 		
 func _phase_change(phase : int) -> void:
 	match phase:

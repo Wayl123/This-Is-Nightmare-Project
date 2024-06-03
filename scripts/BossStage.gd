@@ -10,6 +10,7 @@ func _ready() -> void:
 	platformSwitchTimer.connect("timeout", Callable(self, "_flip_platform"))
 	player.connect("gameOver", Callable(self, "_reset_game"))
 	boss.connect("bossHealthPercent", Callable(self, "_update_health_bar"))
+	boss.connect("bossDied", Callable(self, "_load_credit"))
 
 func _flip_platform() -> void:
 	tileMap.set_layer_enabled(0, not tileMap.is_layer_enabled(0))
@@ -20,3 +21,6 @@ func _reset_game() -> void:
 
 func _update_health_bar(healthPercent : float) -> void:
 	bossHealthBar.value = healthPercent
+	
+func _load_credit() -> void:
+	pass
