@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4f68cija2s2u"]
+
+[ext_resource type="FontFile" uid="uid://xkupbaxnf7r6" path="res://font/LadyIce3D-7KE.ttf" id="1_hst4a"]
+
+[node name="Credit" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+theme_override_fonts/normal_font = ExtResource("1_hst4a")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]Thanks for Playing
+
+Programming: Wayl123
+Art: Lisica
+Design: Law
+[/center]"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Return" type="Button" parent="."]
+offset_left = 500.0
+offset_top = 250.0
+offset_right = 540.0
+offset_bottom = 280.0
+theme_override_fonts/font = ExtResource("1_hst4a")
+text = "Return"
