@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx84oplhxfuqq"]
+[gd_scene load_steps=11 format=3 uid="uid://dx84oplhxfuqq"]
 
 [ext_resource type="Script" path="res://scripts/BossStage.gd" id="1_ndaqd"]
 [ext_resource type="PackedScene" uid="uid://3xdia5evwk2k" path="res://Tilemap/space_tile_map.tscn" id="1_qo3u0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d14sbtfqtrwhj" path="res://scene/bullet_spawn_markers.tscn" id="4_cxest"]
 [ext_resource type="Texture2D" uid="uid://bihgqer27np3w" path="res://image/health bar boarder.png" id="7_38vtd"]
 [ext_resource type="Texture2D" uid="uid://b7c4xshorgmyq" path="res://image/health bar fill.png" id="8_rjxuv"]
+[ext_resource type="Texture2D" uid="uid://bvdacjl0oee7t" path="res://image/space.png" id="9_x1txd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6twv0"]
 size = Vector2(1206, 249.5)
@@ -60,3 +61,7 @@ offset_bottom = -158.0
 value = 100.0
 texture_over = ExtResource("7_38vtd")
 texture_progress = ExtResource("8_rjxuv")
+
+[node name="Space" type="Sprite2D" parent="."]
+z_index = -10
+texture = ExtResource("9_x1txd")

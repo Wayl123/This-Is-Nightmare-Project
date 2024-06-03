@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5kjlxhop8rqg"]
+[gd_scene load_steps=6 format=3 uid="uid://mutgca27ighf"]
 
 [ext_resource type="FontFile" uid="uid://xkupbaxnf7r6" path="res://font/LadyIce3D-7KE.ttf" id="1_1yxps"]
 [ext_resource type="Script" path="res://scripts/Title.gd" id="1_w82o1"]
 [ext_resource type="PackedScene" uid="uid://3xdia5evwk2k" path="res://Tilemap/space_tile_map.tscn" id="2_w3xuk"]
 [ext_resource type="PackedScene" uid="uid://qhe00d1dk7d3" path="res://scene/player.tscn" id="4_sojv4"]
+[ext_resource type="Texture2D" uid="uid://ckr7tucncdf0b" path="res://image/keys.png" id="5_dnsqt"]
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_w82o1")
@@ -40,3 +41,8 @@ zoom = Vector2(2, 2)
 
 [node name="Player" parent="." instance=ExtResource("4_sojv4")]
 position = Vector2(-225, 112)
+
+[node name="Keys" type="Sprite2D" parent="."]
+z_index = -10
+scale = Vector2(2, 2)
+texture = ExtResource("5_dnsqt")
