@@ -19,7 +19,7 @@ var ENEMY = preload("res://scene/enemy.tscn")
 const MAX_SPEED = 200.0
 const MIN_SPEED = 50.0
 const ACCEL = 10.0
-const TOTAL_HEALTH = 100
+const TOTAL_HEALTH = 4
 
 var destPosition : Vector2
 

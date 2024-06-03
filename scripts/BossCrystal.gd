@@ -4,6 +4,7 @@ signal destroyed
 
 @onready var hurtbox = %Hurtbox
 @onready var bobTimer = %BobTimer
+@onready var crystalHealthBar = %CrystalHealthBar
 
 const TOTAL_HEALTH = 10
 
@@ -26,6 +27,9 @@ func _process(delta : float) -> void:
 
 func _got_hit(area : Area2D) -> void:
 	health -= area.get_damage()
+	var healthPercent = float(health) / float(TOTAL_HEALTH)
+	
+	crystalHealthBar.value = healthPercent * 100.0
 	
 	if health <= 0:
 		remove_from_group("BossCrystals")

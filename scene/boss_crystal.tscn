@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv7mt30fieg4k"]
+[gd_scene load_steps=8 format=3 uid="uid://bv7mt30fieg4k"]
 
 [ext_resource type="Script" path="res://scripts/BossCrystal.gd" id="1_xpc5l"]
 [ext_resource type="Texture2D" uid="uid://dyf1gajerpmjf" path="res://image/boss_crystal.png" id="2_n5etn"]
+[ext_resource type="Texture2D" uid="uid://ddtrpgm2pq5gs" path="res://image/crystalheathbarboarder.png" id="3_4q8pl"]
+[ext_resource type="Texture2D" uid="uid://c26wqek0dwlra" path="res://image/crystalheathbarfill.png" id="4_d7hpv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v0kad"]
 animations = [{
@@ -43,3 +45,13 @@ debug_color = Color(0, 0.6, 0, 0.419608)
 
 [node name="BobTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+
+[node name="CrystalHealthBar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -13.0
+offset_top = -24.0
+offset_right = 12.0
+offset_bottom = -20.0
+value = 100.0
+texture_over = ExtResource("3_4q8pl")
+texture_progress = ExtResource("4_d7hpv")
