@@ -6,6 +6,8 @@ extends Node2D
 @onready var boss = %Boss
 @onready var bossHealthBar = %BossHealthBar
 
+@onready var sceneSwitcher = get_tree().get_first_node_in_group("SceneSwitcher")
+
 func _ready() -> void:
 	platformSwitchTimer.connect("timeout", Callable(self, "_flip_platform"))
 	player.connect("gameOver", Callable(self, "_reset_game"))
@@ -17,10 +19,10 @@ func _flip_platform() -> void:
 	tileMap.set_layer_enabled(1, not tileMap.is_layer_enabled(1))
 	
 func _reset_game() -> void:
-	pass
+	sceneSwitcher.switch_scene(0)
 
 func _update_health_bar(healthPercent : float) -> void:
 	bossHealthBar.value = healthPercent
 	
-func _load_credit() -> void:
-	pass
+func _load_credit():
+	sceneSwitcher.switch_scene(1, 0)

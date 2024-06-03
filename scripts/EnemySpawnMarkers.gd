@@ -16,6 +16,8 @@ signal crystals_destroyed
 @onready var crystalSpawn4 = %CrystalSpawn4
 @onready var spawnTimer = %SpawnTimer
 
+@onready var bossStage = get_tree().get_first_node_in_group("BossStage")
+
 var ENEMY = preload("res://scene/enemy.tscn")
 var BOSSCRYSTAL = preload("res://scene/boss_crystal.tscn")
 
@@ -48,7 +50,7 @@ func _spawn_animation_finished(spawnPosition : Vector2) -> void:
 	enemy.position = spawnPosition
 	direction = 1.0 if enemy.position.x < 0 else -1.0
 	enemy.set("direction", direction)
-	get_node("/root/BossStage").add_child(enemy)
+	bossStage.add_child(enemy)
 	
 func change_spawn_timer(time : float) -> void:
 	spawnTimer.wait_time = time
@@ -62,7 +64,7 @@ func spawn_boss_crystal() -> void:
 		bossCrystal.add_to_group("BossCrystals")
 		bossCrystal.position = spawn.position
 		bossCrystal.connect("destroyed", Callable(self, "_all_crystal_destroyed"))
-		get_node("/root/BossStage").add_child(bossCrystal)
+		bossStage.add_child(bossCrystal)
 		
 func _all_crystal_destroyed() -> void:
 	if get_tree().get_nodes_in_group("BossCrystals").size() <= 0:

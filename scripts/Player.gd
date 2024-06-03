@@ -87,7 +87,7 @@ func _got_hit(area : Area2D) -> void:
 		if invulnTimer.is_stopped():
 			if lastStandMode:
 				gameOver.emit()
-				#queue_free()
+				queue_free()
 			else:
 				_last_stand(true)
 				hurtbox.start_invuln()
@@ -114,4 +114,4 @@ func enemy_killed() -> void:
 
 func _last_stand_expire() -> void:
 	gameOver.emit()
-	#queue_free()
+	queue_free()

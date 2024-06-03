@@ -73,7 +73,7 @@ func _got_hit(area : Area2D) -> void:
 		phase = phaseChange
 		_phase_change(phaseChange)
 		
-	if health == 0:
+	if health <= 0:
 		bossDied.emit()
 		queue_free()
 		
@@ -92,6 +92,7 @@ func _phase_change(phase : int) -> void:
 			enemySpawn.change_spawn_timer(1.5)
 			enemySpawn.call_deferred("spawn_boss_crystal")
 			hurtboxCollision.set_deferred("disabled", true)
+			modulate.a = 0.5
 		1, _:
 			bulletSpawn.toggle_bullet_spread_timer(false)
 			bulletSpawn.change_big_bullet_spawn_amount(1)
@@ -101,6 +102,7 @@ func _phase_change(phase : int) -> void:
 			
 func _set_vuln() -> void:
 	hurtboxCollision.set_deferred("disabled", false)
+	modulate.a = 1
 	
 func _random_move(delta : float) -> void:
 	if abs(global_position.x - destPosition.x) < 0.001 and moveTimer.is_stopped():

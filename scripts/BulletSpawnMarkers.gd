@@ -14,6 +14,7 @@ extends Node2D
 @onready var bulletSpreadTimer = %BulletSpreadTimer
 @onready var bulletSpreadGapTimer = %BulletSpreadGapTimer
 
+@onready var bossStage = get_tree().get_first_node_in_group("BossStage")
 @onready var boss = get_tree().get_first_node_in_group("Boss")
 
 var BULLET = preload("res://scene/bullet.tscn")
@@ -39,7 +40,7 @@ func _spawn_big_bullet() -> void:
 		bullet.scale = Vector2(1, 1)
 		bullet.set("speed", 50.0)
 		bullet.set("expireTime", 15.0)
-		get_node("/root/BossStage").add_child(bullet)
+		bossStage.add_child(bullet)
 	
 func _spawn_spread_bullet(bulletScale : float = 1.0, spreadTimes : int = 1, spreadAmount : int = 1, bulletSpeed : float = 100.0) -> void:
 	var rng = RandomNumberGenerator.new()
@@ -56,7 +57,7 @@ func _spawn_spread_bullet(bulletScale : float = 1.0, spreadTimes : int = 1, spre
 			bullet.scale = Vector2(bulletScale, bulletScale)
 			bullet.set("speed", bulletSpeed)
 			bullet.set("expireTime", 10.0)
-			get_node("/root/BossStage").add_child(bullet)
+			bossStage.add_child(bullet)
 		await bulletSpreadGapTimer.timeout
 	bulletSpreadGapTimer.stop()
 	
