@@ -21,12 +21,12 @@ var BULLET = preload("res://scene/bullet.tscn")
 var spawnList : Array
 var bigSpawnAmount = 1
 
-func _ready():
+func _ready() -> void:
 	bigBulletTimer.connect("timeout", Callable(self, "_spawn_big_bullet"))
 	
 	spawnList = [bulletSpawnLeft1, bulletSpawnLeft2, bulletSpawnLeft3, bulletSpawnLeft4, bulletSpawnLeft5, bulletSpawnRight1, bulletSpawnRight2, bulletSpawnRight3, bulletSpawnRight4, bulletSpawnRight5]
 
-func _spawn_big_bullet():
+func _spawn_big_bullet() -> void:
 	var pickSpawn = spawnList.duplicate()
 	
 	pickSpawn.shuffle()
@@ -41,7 +41,7 @@ func _spawn_big_bullet():
 		bullet.set("expireTime", 15.0)
 		get_node("/root/BossStage").add_child(bullet)
 	
-func _spawn_spread_bullet(bulletScale : float = 1.0, spreadTimes : int = 1, spreadAmount : int = 1, bulletSpeed : float = 100.0):
+func _spawn_spread_bullet(bulletScale : float = 1.0, spreadTimes : int = 1, spreadAmount : int = 1, bulletSpeed : float = 100.0) -> void:
 	var rng = RandomNumberGenerator.new()
 	bulletSpreadGapTimer.start()
 	
@@ -60,13 +60,13 @@ func _spawn_spread_bullet(bulletScale : float = 1.0, spreadTimes : int = 1, spre
 		await bulletSpreadGapTimer.timeout
 	bulletSpreadGapTimer.stop()
 	
-func change_big_bullet_spawn_timer(time : float):
+func change_big_bullet_spawn_timer(time : float) -> void:
 	bigBulletTimer.wait_time = time
 
-func change_big_bullet_spawn_amount(amount : int):
+func change_big_bullet_spawn_amount(amount : int) -> void:
 	bigSpawnAmount = amount
 	
-func toggle_bullet_spread_timer(start : bool = false, bulletScale : float = 1.0, spreadTimes : int = 1, spreadAmount : int = 1, bulletSpeed : float = 100.0, shotTime : float = 5.0):
+func toggle_bullet_spread_timer(start : bool = false, bulletScale : float = 1.0, spreadTimes : int = 1, spreadAmount : int = 1, bulletSpeed : float = 100.0, shotTime : float = 5.0) -> void:
 	if start:
 		bulletSpreadTimer.connect("timeout", Callable(self, "_spawn_spread_bullet").bind(bulletScale, spreadTimes, spreadAmount, bulletSpeed))
 		bulletSpreadTimer.wait_time = shotTime

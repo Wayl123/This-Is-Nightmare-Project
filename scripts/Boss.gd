@@ -29,7 +29,7 @@ var health = TOTAL_HEALTH
 var centerPosition : Vector2
 var freq : float
 
-func _ready():
+func _ready() -> void:
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
 	enemySpawn.connect("crystals_destroyed", Callable(self, "_set_vuln"))
 	
@@ -41,17 +41,17 @@ func _ready():
 	bobTimer.wait_time = 2 * PI / freq
 	bobTimer.start()
 	
-func _physics_process(delta : float):
+func _physics_process(delta : float) -> void:
 	call_deferred("_random_move", delta)
 	
 	if not abs(global_position.x - destPosition.x) < 0.001:
 		speed = move_toward(speed, (MAX_SPEED if global_position.distance_to(destPosition) > 20 else MIN_SPEED), ACCEL)
 		global_position = global_position.move_toward(destPosition, delta * speed)
 		
-func _process(delta : float):
+func _process(delta : float) -> void:
 	position.y = centerPosition.y + sin(bobTimer.time_left * freq) * 4
 
-func _got_hit(area : Area2D):
+func _got_hit(area : Area2D) -> void:
 	health -= area.get_damage()
 	var healthPercent = float(health) / float(TOTAL_HEALTH)
 	var phaseChange : int
@@ -73,7 +73,7 @@ func _got_hit(area : Area2D):
 		phase = phaseChange
 		_phase_change(phaseChange)
 		
-func _phase_change(phase : int):
+func _phase_change(phase : int) -> void:
 	match phase:
 		2:
 			bulletSpawn.toggle_bullet_spread_timer(true, 1, 4, 8, 100.0, 5.0)
@@ -95,10 +95,10 @@ func _phase_change(phase : int):
 			enemySpawn.change_spawn_timer(3.0)
 			enemySpawn.change_spawn_amount(1)
 			
-func _set_vuln():
+func _set_vuln() -> void:
 	hurtboxCollision.set_deferred("disabled", false)
 	
-func _random_move(delta : float):
+func _random_move(delta : float) -> void:
 	if abs(global_position.x - destPosition.x) < 0.001 and moveTimer.is_stopped():
 		var rng = RandomNumberGenerator.new()
 		moveTimer.wait_time = rng.randf_range(1, 7.5)

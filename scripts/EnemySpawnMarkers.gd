@@ -23,7 +23,7 @@ var spawnList : Array
 var crystalSpawnList : Array
 var spawnAmount = 1
 
-func _ready():
+func _ready() -> void:
 	spawnTimer.connect("timeout", Callable(self, "_spawn_enemy"))
 	
 	spawnList = [enemySpawnLeft1, enemySpawnLeft2, enemySpawnLeft3, enemySpawnLeft4, enemySpawnRight1, enemySpawnRight2, enemySpawnRight3, enemySpawnRight4]
@@ -32,7 +32,7 @@ func _ready():
 		
 	crystalSpawnList = [crystalSpawn1, crystalSpawn2, crystalSpawn3, crystalSpawn4]
 
-func _spawn_enemy():
+func _spawn_enemy() -> void:
 	var pickSpawn = spawnList.duplicate()
 	
 	pickSpawn.shuffle()
@@ -41,7 +41,7 @@ func _spawn_enemy():
 	for spawn in pickSpawn:
 		spawn.play_animation("spawning")
 
-func _spawn_animation_finished(spawnPosition : Vector2):
+func _spawn_animation_finished(spawnPosition : Vector2) -> void:
 	var enemy = ENEMY.instantiate()
 	var direction = 1.0
 	
@@ -50,13 +50,13 @@ func _spawn_animation_finished(spawnPosition : Vector2):
 	enemy.set("direction", direction)
 	get_node("/root/BossStage").add_child(enemy)
 	
-func change_spawn_timer(time : float):
+func change_spawn_timer(time : float) -> void:
 	spawnTimer.wait_time = time
 	
-func change_spawn_amount(amount : int):
+func change_spawn_amount(amount : int) -> void:
 	spawnAmount = amount
 	
-func spawn_boss_crystal():
+func spawn_boss_crystal() -> void:
 	for spawn in crystalSpawnList:
 		var bossCrystal = BOSSCRYSTAL.instantiate()
 		bossCrystal.add_to_group("BossCrystals")
@@ -64,6 +64,6 @@ func spawn_boss_crystal():
 		bossCrystal.connect("destroyed", Callable(self, "_all_crystal_destroyed"))
 		get_node("/root/BossStage").add_child(bossCrystal)
 		
-func _all_crystal_destroyed():
+func _all_crystal_destroyed() -> void:
 	if get_tree().get_nodes_in_group("BossCrystals").size() <= 0:
 		crystals_destroyed.emit()

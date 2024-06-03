@@ -12,7 +12,7 @@ var health = TOTAL_HEALTH
 var centerPosition : Vector2
 var freq : float
 
-func _ready():
+func _ready() -> void:
 	hurtbox.connect("area_entered", Callable(self, "_got_hit"))
 	
 	centerPosition = position
@@ -21,10 +21,10 @@ func _ready():
 	bobTimer.wait_time = 2 * PI / freq
 	bobTimer.start()
 	
-func _process(delta : float):
+func _process(delta : float) -> void:
 	position.y = centerPosition.y + sin(bobTimer.time_left * freq) * 3
 
-func _got_hit(area : Area2D):
+func _got_hit(area : Area2D) -> void:
 	health -= area.get_damage()
 	
 	if health <= 0:

@@ -8,7 +8,7 @@ signal spawn_enemy
 var centerPosition : Vector2
 var freq : float
 
-func _ready():
+func _ready() -> void:
 	sprite.connect("animation_finished", Callable(self, "_idle"))
 	
 	centerPosition = position
@@ -17,12 +17,12 @@ func _ready():
 	bobTimer.wait_time = 2 * PI / freq
 	bobTimer.start()
 	
-func _process(delta : float):
+func _process(delta : float) -> void:
 	position.y = centerPosition.y + sin(bobTimer.time_left * freq) * 2
 
-func play_animation(animation : String):
+func play_animation(animation : String) -> void:
 	sprite.play(animation)
 	
-func _idle():
+func _idle() -> void:
 	spawn_enemy.emit()
 	sprite.play("idle")
