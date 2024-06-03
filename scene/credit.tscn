@@ -7,18 +7,18 @@
 script = ExtResource("1_8ou5h")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -270.0
-offset_top = -163.84
-offset_right = 270.0
-offset_bottom = 316.16
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
 theme_override_fonts/normal_font = ExtResource("1_hst4a")
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[center]Thanks for Playing!
+text = "[center]Thanks for Playing
 
 Programming: Wayl123
-Art: Lisica, Law
-Game design: Law
+Art: Lisica
+Design: Law
 [/center]"
 
 [node name="Camera2D" type="Camera2D" parent="."]
