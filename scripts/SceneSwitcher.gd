@@ -3,6 +3,7 @@ extends Node
 @onready var animationPlayer = %AnimationPlayer
 @onready var musicPlayer = %AudioStreamPlayer
 
+var titleScene = preload("res://scene/title.tscn")
 var bossScene = preload("res://scene/boss_stage.tscn")
 var creditScene = preload("res://scene/credit.tscn")
 
@@ -18,11 +19,11 @@ var musicList : Array
 func _ready() -> void:
 	musicPlayer.connect("finished", Callable(self, "_loop_music"))
 	
-	sceneList = [bossScene, creditScene]
+	sceneList = [titleScene, bossScene, creditScene]
 	musicList = [titleMusic, bossMusic]
 	
-	newScene = bossScene.instantiate()
-	_switch_music(1)
+	newScene = titleScene.instantiate()
+	_switch_music(0)
 	_set_current_scene()
 	
 func _loop_music() -> void:

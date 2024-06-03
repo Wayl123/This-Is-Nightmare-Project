@@ -19,10 +19,10 @@ func _flip_platform() -> void:
 	tileMap.set_layer_enabled(1, not tileMap.is_layer_enabled(1))
 	
 func _reset_game() -> void:
-	sceneSwitcher.switch_scene(0)
+	sceneSwitcher.switch_scene(1)
 
 func _update_health_bar(healthPercent : float) -> void:
 	bossHealthBar.value = healthPercent
 	
 func _load_credit():
-	sceneSwitcher.switch_scene(1, 0)
+	sceneSwitcher.switch_scene(2, 0)
